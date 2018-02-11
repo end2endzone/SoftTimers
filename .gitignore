@@ -1,1 +1,15 @@
 /deploy
+/src/*.opensdf
+/src/*.sdf
+/src/*.suo
+/src/Debug
+/src/Release
+/src/ipch
+/src/SoftTimers_unittest/Debug
+/src/SoftTimers_unittest/Release
+/src/SoftTimers_unittest/*.user
+/src/win32Arduino/Win32
+/src/win32Arduino/*.user
+/src/bin
+/third_party
+/src/SoftTimers_unittest/SoftTimers_unittest.x86.debug.xml
