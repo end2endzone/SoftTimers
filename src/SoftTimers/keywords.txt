@@ -1,0 +1,12 @@
+SoftTimerMillis	KEYWORD1
+SoftTimerMicros	KEYWORD1
+SoftTimer	KEYWORD1
+reset	KEYWORD2
+getElapsedTime	KEYWORD2
+getRemainingTime	KEYWORD2
+setTimeOutTime	KEYWORD2
+getTimeOutTime	KEYWORD2
+hasTimedOut	KEYWORD2
+getProgress	KEYWORD2
+getLoopProgress	KEYWORD2
+getLoopCount	KEYWORD2
