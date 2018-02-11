@@ -40,6 +40,8 @@ clone_folder: c:\projects\SoftTimers
 install:
 - ps: .\ci\appveyor\prepare_github_deploy.ps1
 - cmd: call c:\projects\SoftTimers\ci\appveyor\version_info_update.bat
+- cmd: call c:\projects\SoftTimers\ci\appveyor\googletest_install.bat
+- cmd: call c:\projects\SoftTimers\ci\appveyor\googletest_build.bat
 
 #---------------------------------#
 #       build configuration       #
@@ -56,28 +58,25 @@ configuration: Release
 #  - Debug
 #  - Release
 
-#build:
-#  project: cmake\build\SoftTimers.sln
-#  verbosity: minimal
-
-build_script:
-- cmd: call c:\projects\SoftTimers\ci\appveyor\build_deploy_package.bat
-
+build:
+  project: src\SoftTimers_unittest.sln
+  verbosity: minimal
+  
 #---------------------------------#
 #       tests configuration       #
 #---------------------------------#
 
 # to run your custom scripts instead of automatic tests
-#test_script:
-#- cmd: call c:\projects\SoftTimers\ci\appveyor\test_script.bat
+test_script:
+- cmd: call c:\projects\SoftTimers\ci\appveyor\test_script.bat
 
 #---------------------------------#
 #      artifacts configuration    #
 #---------------------------------#
 
 artifacts:
-- path: deploy\*.zip
-  name: SoftTimers portable
+- path: src\Release\SoftTimers_unittest.x86.release.xml
+  name: SoftTimers_unittest.x86.release.xml
   
 #---------------------------------#
 #     deployment configuration    #
