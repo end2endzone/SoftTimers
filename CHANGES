@@ -1,0 +1,18 @@
+Changes for 1.2.0:
+
+* First github release.
+* Code originally release at http://www.end2endzone.com/softtimers-a-collection-of-software-timers-to-easily-compute-elapsed-time-since-an-event-occured/
+
+Changes for 1.1.0:
+
+* Fixed a bug where uninitialized timeout time would return incorrect results.
+* Added support for using an external counting function. This also allows the same class (SoftTimer)
+  to support both milliseconds and microseconds.
+* Implemented progress and looping support. See getProgress(), getLoopCount() and getLoopProgress()
+* Implemented support for remaining time. See getRemainingTime()
+* Created new unit tests using win32Arduino library available at:
+  http://www.end2endzone.com/win32arduino-a-win32-library-that-implements-most-arduino-functions/
+* Added many new examples to show possible use of the library.
+
+Changes for 1.0.0:
+* Initial release.
