@@ -13,3 +13,4 @@
 /src/bin
 /third_party
 /src/SoftTimers_unittest/SoftTimers_unittest.x86.debug.xml
+/cmake/build
