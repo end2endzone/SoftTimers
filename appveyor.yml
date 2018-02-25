@@ -42,6 +42,8 @@ install:
 - cmd: call c:\projects\SoftTimers\ci\appveyor\version_info_update.bat
 - cmd: call c:\projects\SoftTimers\ci\appveyor\googletest_install.bat
 - cmd: call c:\projects\SoftTimers\ci\appveyor\googletest_build.bat
+- cmd: call c:\projects\SoftTimers\ci\appveyor\win32arduino_install.bat
+- cmd: call c:\projects\SoftTimers\ci\appveyor\win32arduino_build.bat
 
 #---------------------------------#
 #       build configuration       #
