@@ -7,9 +7,9 @@
 #include <tchar.h>
 
 #include <string>
+#include "TestSoftTimers.h"
 #include "arduino.h"
 #include "SoftTimers.h"
-#include "TestSoftTimers.h"
 #include "gTestHelper.h"
 
 namespace arduino { namespace test
@@ -35,10 +35,10 @@ namespace arduino { namespace test
   void TestSoftTimers::SetUp()
   {
     //force simulation strategy of win32Arduino library
-    arduino_stub::setClockStrategy(arduino_stub::CLOCK_SIMULATION);
+    testarduino::setClockStrategy(testarduino::CLOCK_SIMULATION);
 
     //disable function logging
-    arduino_stub::setLogFile("");
+    testarduino::setLogFile("");
   }
   //--------------------------------------------------------------------------------------------------
   void TestSoftTimers::TearDown()
@@ -49,7 +49,7 @@ namespace arduino { namespace test
   {
     SoftTimerMillis t;
     
-    ASSERT_LT(t.getElapsedTime(), 20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (uint32_t)20); //20 ms epsilon since time can actually flows between contructor time and current time
     ASSERT_FALSE( t.hasTimedOut() );
 
     t.setTimeOutTime(300); //0.3 second.
@@ -67,7 +67,7 @@ namespace arduino { namespace test
     ASSERT_TRUE( t.hasTimedOut() );
     t.reset();
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), 20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (uint32_t)20); //20 ms epsilon since time can actually flows between contructor time and current time
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testMacrosOverflow)
@@ -75,7 +75,7 @@ namespace arduino { namespace test
     SoftTimerMicros t;
 
     //wait for the micros() function to *almost* wrap around
-    arduino_stub::setMicrosCounter(0xFFFFF000);
+    testarduino::setMicrosecondsCounter(0xFFFFF000);
     uint32_t until = 0xFFFFFF00; //255 usec before wrapping around
     while(micros() < until)
     {
@@ -86,7 +86,7 @@ namespace arduino { namespace test
     t.reset(); //expecting start time of ~0xFFFFFF08
 
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), 20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (uint32_t)20); //20 ms epsilon since time can actually flows between contructor time and current time
 
     //wait the micros() function to actually wrap around
     //from ~0xFFFFFF08 to 0xFFFFFFFF
@@ -111,14 +111,14 @@ namespace arduino { namespace test
     }
     
     ASSERT_TRUE( t.hasTimedOut() );
-    ASSERT_GT(t.getElapsedTime(), 500);
+    ASSERT_GT(t.getElapsedTime(), (uint32_t)500);
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testMillisConfiguration)
   {
     SoftTimer t(&millis);
 
-    ASSERT_LT(t.getElapsedTime(), 2); //2 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (uint32_t)2); //2 ms epsilon since time can actually flows between contructor time and current time
     ASSERT_FALSE( t.hasTimedOut() );
 
     t.setTimeOutTime(300); //300ms second.
@@ -136,7 +136,7 @@ namespace arduino { namespace test
     ASSERT_TRUE( t.hasTimedOut() );
     t.reset();
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), 2); //2 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (uint32_t)2); //2 ms epsilon since time can actually flows between contructor time and current time
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testProgress)
