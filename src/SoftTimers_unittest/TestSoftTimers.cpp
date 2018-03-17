@@ -4,11 +4,15 @@
 #include <string>
 #include "TestSoftTimers.h"
 #include "arduino.h"
+#include "IncrementalClockStrategy.h"
 #include "SoftTimers.h"
 #include "gTestHelper.h"
 
+using namespace testarduino;
+
 namespace arduino { namespace test
 {
+  IncrementalClockStrategy & gClock = IncrementalClockStrategy::getInstance();
 
   static uint32_t gLocalCounter = 0;
   uint32_t getLocalCounter()
@@ -30,7 +34,7 @@ namespace arduino { namespace test
   void TestSoftTimers::SetUp()
   {
     //force simulation strategy of win32Arduino library
-    testarduino::setClockStrategy(testarduino::CLOCK_SIMULATION);
+    testarduino::setClockStrategy(&gClock);
 
     //disable function logging
     testarduino::setLogFile("");
@@ -70,7 +74,7 @@ namespace arduino { namespace test
     SoftTimerMicros t;
 
     //wait for the micros() function to *almost* wrap around
-    testarduino::setMicrosecondsCounter(0xFFFFF000);
+    gClock.setMicrosecondsCounter(0xFFFFF000);
     uint32_t until = 0xFFFFFF00; //255 usec before wrapping around
     while(micros() < until)
     {
