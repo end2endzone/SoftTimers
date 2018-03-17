@@ -84,7 +84,7 @@ test_script:
 #---------------------------------#
 
 artifacts:
-- path: src\Release\SoftTimers_unittest.x86.release.xml
+- path: cmake\build\bin\Release\SoftTimers_unittest.x86.release.xml
   name: SoftTimers_unittest.x86.release.xml
 - path: deploy\*.zip
   name: SoftTimers portable
