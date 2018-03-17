@@ -99,7 +99,6 @@
   <ItemGroup>
     <ClInclude Include="..\SoftTimers\SoftTimers.h" />
     <ClInclude Include="gtesthelper.h" />
-    <ClInclude Include="targetver.h" />
     <ClInclude Include="TestSoftTimers.h" />
   </ItemGroup>
   <ItemGroup>

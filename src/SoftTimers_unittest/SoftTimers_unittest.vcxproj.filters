@@ -41,9 +41,6 @@
     <ClInclude Include="gtesthelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\SoftTimers\SoftTimers.h">
       <Filter>External arduino libraries\SoftTimers</Filter>
     </ClInclude>
