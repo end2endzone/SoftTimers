@@ -28,6 +28,7 @@ echo Cloning win32arduino repository
 echo =======================================================================
 git clone https://github.com/end2endzone/win32Arduino.git %WIN32ARDUINO_HOME%
 cd /d %WIN32ARDUINO_HOME%
+REM git checkout release-1.0.0
 echo done.
 echo.
 
