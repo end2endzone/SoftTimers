@@ -2,7 +2,7 @@
 
 echo Change directory to output directory
 cd /d %~dp0
-cd ..\..\src\Release
+cd ..\..\cmake\build\bin\Release
 
 echo =======================================================================
 echo Running unit tests...

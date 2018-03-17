@@ -60,8 +60,11 @@ configuration: Release
 #  - Debug
 #  - Release
 
+before_build:
+- cmd: call c:\projects\SoftTimers\cmake\vs2010.bat
+
 build:
-  project: src\SoftTimers_unittest.sln
+  project: cmake\build\softtimers.sln
   verbosity: minimal
   
 #---------------------------------#
