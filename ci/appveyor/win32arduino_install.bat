@@ -11,7 +11,7 @@ echo done.
 echo.
 
 set WIN32ARDUINO_HOME=%REPOSITORY_ROOT%\third_party\win32arduino
-echo Downloading win32Arduino to folder %GOOGLETEST_HOME%
+echo Downloading win32Arduino to folder %WIN32ARDUINO_HOME%
 echo.
 
 echo ======================================================================
