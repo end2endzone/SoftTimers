@@ -10,11 +10,15 @@ echo REPOSITORY_ROOT=%REPOSITORY_ROOT%
 echo done.
 echo.
 
+set WIN32ARDUINO_HOME=%REPOSITORY_ROOT%\third_party\win32arduino
+echo Downloading win32Arduino to folder %GOOGLETEST_HOME%
+echo.
+
 echo ======================================================================
 echo Deleting win32arduino repository folder (if any)
 echo =======================================================================
-if EXIST %REPOSITORY_ROOT%\third_party\win32arduino (
-  rmdir /q/s %REPOSITORY_ROOT%\third_party\win32arduino
+if EXIST %WIN32ARDUINO_HOME% (
+  rmdir /q/s %WIN32ARDUINO_HOME%
 )
 echo done.
 echo.
@@ -22,15 +26,15 @@ echo.
 echo ======================================================================
 echo Cloning win32arduino repository
 echo =======================================================================
-git clone https://github.com/end2endzone/win32Arduino.git %REPOSITORY_ROOT%\third_party\win32arduino
-cd /d %REPOSITORY_ROOT%\third_party\win32arduino
+git clone https://github.com/end2endzone/win32Arduino.git %WIN32ARDUINO_HOME%
+cd /d %WIN32ARDUINO_HOME%
 echo done.
 echo.
 
 echo =======================================================================
 echo Generating win32arduino Visual Studio 2010 solution
 echo =======================================================================
-cd /d %REPOSITORY_ROOT%\third_party\win32arduino\cmake
+cd /d %WIN32ARDUINO_HOME%\cmake
 
 echo Deleting previous build folder (if any)
 rmdir /s/q build >NUL 2>NUL
