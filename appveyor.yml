@@ -66,6 +66,10 @@ before_build:
 build:
   project: cmake\build\softtimers.sln
   verbosity: minimal
+
+after_build:
+- cmd: del c:\projects\SoftTimers\src\SoftTimers\CMakeLists.txt
+- cmd: call c:\projects\SoftTimers\ci\appveyor\build_deploy_package.bat
   
 #---------------------------------#
 #       tests configuration       #
@@ -82,6 +86,8 @@ test_script:
 artifacts:
 - path: src\Release\SoftTimers_unittest.x86.release.xml
   name: SoftTimers_unittest.x86.release.xml
+- path: deploy\*.zip
+  name: SoftTimers portable
   
 #---------------------------------#
 #     deployment configuration    #
