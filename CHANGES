@@ -1,5 +1,6 @@
 Changes for 1.2.0:
 
+* Source code now depends on win32Arduino third party library available at http://github.com/end2endzone/win32Arduino
 * First github release.
 * Code originally release at http://www.end2endzone.com/softtimers-a-collection-of-software-timers-to-easily-compute-elapsed-time-since-an-event-occured/
 
