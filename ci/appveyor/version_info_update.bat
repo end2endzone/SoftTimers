@@ -28,11 +28,3 @@ echo #endif //PRODUCT_VERSION_H>>%OUTPUTFILE%
 set OUTPUTFILE=
 echo done.
 echo.
-
-REM **************** version_info.nsh ****************
-set OUTPUTFILE=%REPOSITORY_ROOT%\version_info.nsh
-echo Updating %OUTPUTFILE%...
-echo !define PRODUCT_VERSION "%APPVEYOR_BUILD_VERSION%">%OUTPUTFILE%
-set OUTPUTFILE=
-echo done.
-echo.
