@@ -317,25 +317,19 @@ void loop() {
 
 # Building
 
-The library can be build on windows for debugging and running unit tests with the help of [win32Arduino](http://github.com/end2endzone/win32Arduino) library.
-
 Please refer to file [INSTALL.md](INSTALL.md) for details on how installing/building the application.
 
 # Testing
-SoftTimers comes with unit tests which tests for multiple combinations to make sure that all function behaves as expected.
+
+SoftTimers comes with unit tests which help maintaining the product stability and level of quality.
 
 Test are build using the Google Test v1.6.0 framework. For more information on how googletest is working, see the [google test documentation primer](https://github.com/google/googletest/blob/release-1.8.0/googletest/docs/V1_6_Primer.md).  
 
-Test are automatically build when building the solution. Please see the '*build step*' section for details on how to build the software.
+Test are automatically build when building the solution. See [INSTALL.md](INSTALL.md) for details on how to build the software.
 
-Test can be executed from the following two locations:
+To run tests, open a file navigator and browse to the output folder (for example `c:\projects\SoftTimers\cmake\build\bin\Release`) and run `softtimers_unittest.exe` executable.
 
-1) From the Visual Studio IDE:
-   1) Select the project `softtimers_unittest` as StartUp project.
-   2) Hit CTRL+F5 (Start Without Debugging)
-2) From the output binaries folder:
-   1) Open a file navigator and browse to the output folder(for example c:\projects\SoftTimers\cmake\build\bin\Release)
-   2) Run the `softtimers_unittest.exe` executable.
+Test results are saved in junit format in file `SoftTimers_unittest.x86.debug.xml` or `SoftTimers_unittest.x86.release.xml` depending on the selected configuration.
 
 See also the latest test results at the beginning of the document.
 
