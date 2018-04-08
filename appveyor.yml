@@ -38,6 +38,8 @@ clone_folder: c:\projects\SoftTimers
 
 # scripts that run after cloning repository
 install:
+- ps: .\ci\appveyor\generate_environment.ps1
+- cmd: call .\ci\appveyor\environment.bat
 - ps: .\ci\appveyor\prepare_github_deploy.ps1
 - cmd: call c:\projects\SoftTimers\ci\appveyor\version_info_update.bat
 - cmd: call c:\projects\SoftTimers\ci\appveyor\googletest_install.bat

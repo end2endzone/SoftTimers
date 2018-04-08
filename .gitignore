@@ -15,3 +15,4 @@
 /src/SoftTimers_unittest/SoftTimers_unittest.x86.debug.xml
 /cmake/build
 /src/SoftTimers_unittest/SoftTimers_unittest.x86.release.xml
+/ci/appveyor/environment.bat
