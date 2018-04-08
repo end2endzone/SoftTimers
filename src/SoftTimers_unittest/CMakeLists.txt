@@ -4,8 +4,8 @@ link_directories(${LIBRARY_OUTPUT_PATH})
 include_directories($ENV{WIN32ARDUINO_HOME}/src/win32Arduino)
 link_directories($ENV{WIN32ARDUINO_HOME}/cmake/build/bin)
 
-include_directories($ENV{GTEST_INCLUDE})
-link_directories($ENV{GTEST_LIBRARY_DIR})
+include_directories($ENV{GOOGLETEST_HOME}/include)
+link_directories($ENV{GOOGLETEST_HOME}/build)
 
 add_executable(softtimers_unittest
   gtesthelper.cpp
