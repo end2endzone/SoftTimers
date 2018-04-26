@@ -1,4 +1,4 @@
-# Installing
+# SoftTimers-Installing
 
 The library does not provide an automatic installer package. It is deployed using a zip archive which only contains the source code. It can be installed on the system by following the same steps as with other Arduino library.
 
@@ -41,11 +41,11 @@ The following software must be installed on the system for compiling source code
 * Visual Studio 2010 (or newer)
 * [Google C++ Testing Framework v1.6.0](https://github.com/google/googletest/tree/release-1.6.0) (untested with other versions)
 * [CMake](http://www.cmake.org/) v3.9.6 (or newer)
-* [win32Arduino](https://github.com/end2endzone/win32Arduino/tags) v1.4.0.12 (untested with other versions)
+* [win32Arduino](https://github.com/end2endzone/win32Arduino/tags) v2.0.0+build.37 (untested with other versions)
 
 The following software must be installed on the system for building the deploy packages:
 
-* ~~[7-Zip](http://www.7-zip.org/) v9.20 (or newwer) for building the library package.~~
+* [7-Zip](http://www.7-zip.org/) v9.20 (or newwer) for building the library package.
 
 ## Build steps
 
@@ -63,9 +63,7 @@ The following software must be installed on the system for building the deploy p
 
 4) Build the solution.
 
-For building unit tests, the application needs to know where the googletest libraries (debug & release) are located.
-
-The following environment variables should be defined:
+For building unit tests, the project needs to know where the libraries (debug & release) are located. The following environment variables should be defined:
 
 | Name                     | Value                                         |
 |--------------------------|-----------------------------------------------|
@@ -77,15 +75,22 @@ Note that the `GOOGLETEST_HOME` variable should match the actual directory where
 
 1) Download the [win32Arduino source code](https://github.com/end2endzone/win32Arduino/tags) and extract the content to a local directory (for example `c:\projects\SoftTimers\third_party\win32Arduino`).
 
-2) Follow build and installation instructions in `c:\projects\SoftTimers\third_party\win32Arduino\INSTALL.md` file.
+2) Follow build and installation instructions specified in `c:\projects\SoftTimers\third_party\win32Arduino\INSTALL.md` file.
 
 ### SoftTimers
 
 1) Download the [project source code](https://github.com/end2endzone/SoftTimers/tags) and extract the content to a temporary directory (for example c:\projects\SoftTimers).
 
-2) ???
+2) Generate the Visual Studio 2010 solution using the following commands:
+   * cd c:\projects\SoftTimers
+   * cd cmake
+   * mkdir build
+   * cd build
+   * cmake -G "Visual Studio 10 2010" c:\projects\SoftTimers\src
 
-3) Build the solution.
+3) Open the generated Visual Studio 2010 solution file located in c:\projects\SoftTimers\cmake\build\SoftTimers.sln.
+
+4) Build the solution.
 
 ### Deploy packages
 
@@ -93,6 +98,15 @@ The library is deployed as a zip package.
 
 Execute the following steps to build the deploy package:
 
+ICI!!!
+
+ICI!!!
+
+ICI!!!
+
+ICI!!!
+
 1) ???
 
 2) ???
+
