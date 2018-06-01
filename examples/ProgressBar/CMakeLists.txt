@@ -15,7 +15,7 @@ endif()
 include_directories($ENV{WIN32ARDUINO_HOME}/include)
 link_directories($ENV{WIN32ARDUINO_HOME}/build/bin)
 
-include_directories(${CMAKE_SOURCE_DIR}/src/SoftTimers)
+include_directories(${CMAKE_SOURCE_DIR}/src)
 
 add_executable(ProgressBar main.cpp )
 
