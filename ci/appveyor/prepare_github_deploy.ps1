@@ -18,7 +18,7 @@ If ("$env:APPVEYOR_REPO_BRANCH".contains("prerelease")) {
   Write-Output "Tagging each commits with a unique version..."
   Write-Output "Deploying each commits to GitHub..."
 
-  $env:GITHUB_TAG_NAME="v$env:APPVEYOR_BUILD_VERSION"
+  $env:GITHUB_TAG_NAME="$env:APPVEYOR_BUILD_VERSION"
   $env:GITHUB_RELEASE_NAME="$env:APPVEYOR_PROJECT_NAME-v$env:APPVEYOR_BUILD_VERSION"
 }
 Else
