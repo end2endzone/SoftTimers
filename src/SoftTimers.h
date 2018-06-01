@@ -9,6 +9,7 @@
 #define SoftTimers_h
 
 #include "Arduino.h"
+#include "SoftTimers_version.h"
 
 class SoftTimer
 {

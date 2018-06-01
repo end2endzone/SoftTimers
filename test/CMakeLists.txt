@@ -1,4 +1,4 @@
-include_directories(${CMAKE_SOURCE_DIR}/src/SoftTimers)
+include_directories(${CMAKE_SOURCE_DIR}/src)
 link_directories(${LIBRARY_OUTPUT_PATH})
 
 include_directories($ENV{WIN32ARDUINO_HOME}/include)

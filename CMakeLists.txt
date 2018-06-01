@@ -57,7 +57,7 @@ MESSAGE("SOFTTIMERS_VERSION_STRING: ${SOFTTIMERS_VERSION_STRING}")
 MESSAGE("")
 
 # Generate version files for different systems
-CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/SoftTimers/version.h.in"      "${CMAKE_CURRENT_SOURCE_DIR}/src/SoftTimers/version.h")
+CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/SoftTimers_version.h.in"      "${CMAKE_CURRENT_SOURCE_DIR}/src/SoftTimers_version.h")
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/version.in"                       "${CMAKE_CURRENT_SOURCE_DIR}/version")
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/library.properties.in"            "${CMAKE_CURRENT_SOURCE_DIR}/library.properties")
 
@@ -77,7 +77,7 @@ endif()
 #------------------------------------------------------------------------------------------------------------
 # Add source directories
 #------------------------------------------------------------------------------------------------------------
-add_subdirectory(src/SoftTimers)
+add_subdirectory(src)
 
 #------------------------------------------------------------------------------------------------------------
 # unit tests
