@@ -3,6 +3,7 @@ Changes for 1.3.0:
 * New feature: Added support for doxygen API documentation. See build option `SOFTTIMERS_BUILD_DOC` for details.
 * New feature: Build option `SOFTTIMERS_BUILD_TEST` to enable/disable building SoftTimers unit tests.
 * New feature: Build option `SOFTTIMERS_BUILD_EXAMPLES` to enable/disable building SoftTimers examples.
+* New feature: Changed file/folder structure to be compatible with Arduino Library Manager.
 
 Changes for 1.2.0:
 

@@ -59,6 +59,7 @@ MESSAGE("")
 # Generate version files for different systems
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/SoftTimers/version.h.in"      "${CMAKE_CURRENT_SOURCE_DIR}/src/SoftTimers/version.h")
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/version.in"                       "${CMAKE_CURRENT_SOURCE_DIR}/version")
+CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/library.properties.in"            "${CMAKE_CURRENT_SOURCE_DIR}/library.properties")
 
 #------------------------------------------------------------------------------------------------------------
 # Validate mandatory environment variables.

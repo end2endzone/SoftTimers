@@ -1,0 +1,9 @@
+name=SoftTimers
+version=@SOFTTIMERS_VERSION_STRING@
+author=Antoine Beauchamp <end2endzone@gmail.com>
+maintainer=Antoine Beauchamp <end2endzone@gmail.com>
+sentence=Software timers to compute elapsed time since an event.
+paragraph=A collection of software timers for arduino to easily compute elapsed time since an event occured.
+category=Timing
+url=https://github.com/end2endzone/SoftTimers
+architectures=*
