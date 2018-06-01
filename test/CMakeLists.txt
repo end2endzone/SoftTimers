@@ -4,12 +4,13 @@ link_directories(${LIBRARY_OUTPUT_PATH})
 include_directories($ENV{WIN32ARDUINO_HOME}/include)
 link_directories($ENV{WIN32ARDUINO_HOME}/build/bin)
 
+include_directories($ENV{RAPIDASSIST_HOME}/include)
+link_directories($ENV{RAPIDASSIST_HOME}/build/bin)
+
 include_directories($ENV{GOOGLETEST_HOME}/include)
 link_directories($ENV{GOOGLETEST_HOME}/build)
 
 add_executable(softtimers_unittest
-  gtesthelper.cpp
-  gtesthelper.h
   main.cpp
   TestSoftTimers.cpp
   TestSoftTimers.h

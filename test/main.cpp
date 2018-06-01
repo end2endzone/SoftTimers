@@ -6,22 +6,21 @@
 
 #include <gtest/gtest.h>
 
-#include "gtesthelper.h"
+#include "rapidassist/gtesthelp.h"
 
 int main(int argc, char **argv)
 {
   //define default values for xml output report
-  gTestHelper & hlp = gTestHelper::getInstance();
-  if (hlp.isProcessorX86())
+  if (ra::gtesthelp::isProcessorX86())
   {
-    if (hlp.isDebugCode())
+    if (ra::gtesthelp::isDebugCode())
       ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x86.debug.xml";
     else
       ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x86.release.xml";
   }
-  else if (hlp.isProcessorX64())
+  else if (ra::gtesthelp::isProcessorX64())
   {
-    if (hlp.isDebugCode())
+    if (ra::gtesthelp::isDebugCode())
       ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x64.debug.xml";
     else
       ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x64.release.xml";

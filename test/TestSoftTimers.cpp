@@ -6,7 +6,6 @@
 #include "arduino.h"
 #include "IncrementalClockStrategy.h"
 #include "SoftTimers.h"
-#include "gTestHelper.h"
 
 using namespace testarduino;
 
