@@ -11,10 +11,9 @@ AppVeyor build statistics:
 [![Build statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master)
 
 
-
 # SoftTimers
 
-The SoftTimers arduino library is a collection of software timers. It allows one to properly time multiple events and know when each "timer" expires meaning that an action is required.
+The SoftTimers arduino library is a collection of software timers. It allows one to properly time multiple events and know when each "timer" expires meaning that an action is required. SoftTimers can also be used to compute the elapsed time since an event occured. The library aims at greatly simplifying multitask complexity.
 
 Library features:
 *  Provides the non-blocking equivalent to blocking `delay()` function.
@@ -23,6 +22,7 @@ Library features:
 *  Supports milliseconds, microseconds or any other arbitrary time with external time counting function.
 *  Provides expiration loop count API (as if timer never expire and automatically `reset()`) to easily implement toggling, and time based state machines.
 *  Automatically handles `micros()` an `millis()` overflows / wrap around special cases.
+*  Provides multitasking abilities to sketches.
 
 # Purpose
 
