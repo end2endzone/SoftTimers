@@ -1,16 +1,8 @@
-# Notes:
-#   - Minimal appveyor.yml file is an empty file. All sections are optional.
-#   - Indent each level of configuration with 2 spaces. Do not use tabs!
-#   - All section names are case-sensitive.
-#   - Section names should be unique on each level.
-
 #---------------------------------#
 #      general configuration      #
 #---------------------------------#
 
 # version format
-# version must contains build number to make sure that all commits are processed by appveyor.
-# If build number is not part of the version than appveyor build fails with the following message: "Build version x.y.z already exists."
 version: "{branch} (#{build})"
 
 # branches to build
@@ -18,20 +10,9 @@ branches:
   only:
     - arduino_library_manager
 
-# Do not build on tags (GitHub and BitBucket)
-skip_tags: true
-
 #---------------------------------#
 #    environment configuration    #
 #---------------------------------#
-
-environment:
-  WIN32ARDUINO_HOME: $(APPVEYOR_BUILD_FOLDER)\lib\win32Arduino
-  GOOGLETEST_HOME: $(APPVEYOR_BUILD_FOLDER)\lib\win32Arduino\lib\googletest
-  RAPIDASSIST_HOME: $(APPVEYOR_BUILD_FOLDER)\lib\win32Arduino\lib\RapidAssist
-
-# Build worker image (VM template)
-image: Visual Studio 2015
 
 # scripts that are called at very beginning, before repo cloning
 init:
@@ -43,32 +24,26 @@ clone_folder: c:\projects\SoftTimers
 
 # scripts that run after cloning repository
 install:
-- cmd: echo GOOGLETEST_HOME=%GOOGLETEST_HOME%
-- cmd: echo RAPIDASSIST_HOME=%RAPIDASSIST_HOME%
-- cmd: echo WIN32ARDUINO_HOME=%WIN32ARDUINO_HOME%
-- cmd: git submodule update --init --recursive
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_ide_install.bat
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_library_install.bat
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_googletest.bat
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_rapidassist.bat
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_win32arduino.bat
 
 #---------------------------------#
 #       build configuration       #
 #---------------------------------#
 
-# build platform, i.e. x86, x64, Any CPU. This setting is optional.
-platform: Win32
+build_script:
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat Countdown
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat CycleHighPin
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat FadeLed
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat ProgressBar
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat StateMachine
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat ToggleLed
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat ToggleLedAdvanced
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\build_library.bat
 
-# build Configuration, i.e. Debug, Release, etc.
-configuration: Release
-
-# to add several configurations to build matrix:
-#configuration:
-#  - Debug
-#  - Release
-
-before_build:
-- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\before_build.bat
-
-build:
-  project: $(APPVEYOR_BUILD_FOLDER)\build\$(APPVEYOR_PROJECT_NAME).sln
-  
 #---------------------------------#
 #       tests configuration       #
 #---------------------------------#
@@ -76,7 +51,7 @@ build:
 # to run your custom scripts instead of automatic tests
 test_script:
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\test_script.bat
-- ps: . "$env:APPVEYOR_BUILD_FOLDER\ci\appveyor\UploadJUnitFiles.ps1" -Path $env:APPVEYOR_BUILD_FOLDER
+- ps: . "$env:APPVEYOR_BUILD_FOLDER\ci\appveyor\UploadJUnitFiles.ps1" -Path "$env:APPVEYOR_BUILD_FOLDER\build\bin"
 
 #---------------------------------#
 #      artifacts configuration    #
