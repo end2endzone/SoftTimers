@@ -1,9 +1,0 @@
-name=SoftTimers
-version=@SOFTTIMERS_VERSION_STRING@
-author=Antoine Beauchamp <end2endzone@gmail.com>
-maintainer=Antoine Beauchamp <end2endzone@gmail.com>
-sentence=The SoftTimers arduino library is a collection of software timers.
-paragraph=It allows one to properly time multiple events and know when each "timer" expires meaning that an action is required. SoftTimers can also be used to compute the elapsed time since an event occured. The library aims at greatly simplifying multitask complexity.
-category=Timing
-url=https://github.com/end2endzone/SoftTimers
-architectures=*

@@ -1,5 +1,2 @@
-/deploy
-/lib
+/third_parties
 /build
-/src/SoftTimers/version.h
-/version
