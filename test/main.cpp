@@ -10,20 +10,10 @@
 int main(int argc, char **argv)
 {
   //define default values for xml output report
-  if (ra::gtesthelp::isProcessorX86())
-  {
-    if (ra::gtesthelp::isDebugCode())
-      ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x86.debug.xml";
-    else
-      ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x86.release.xml";
-  }
-  else if (ra::gtesthelp::isProcessorX64())
-  {
-    if (ra::gtesthelp::isDebugCode())
-      ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x64.debug.xml";
-    else
-      ::testing::GTEST_FLAG(output) = "xml:SoftTimers_unittest.x64.release.xml";
-  }
+  if (ra::gtesthelp::isDebugCode())
+    ::testing::GTEST_FLAG(output) = "xml:softtimers_unittest.debug.xml";
+  else
+    ::testing::GTEST_FLAG(output) = "xml:softtimers_unittest.release.xml";
 
   ::testing::GTEST_FLAG(filter) = "*";
   ::testing::InitGoogleTest(&argc, argv);
