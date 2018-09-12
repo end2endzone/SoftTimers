@@ -2,7 +2,7 @@
 
 #include <string>
 #include "TestSoftTimers.h"
-#include "arduino.h"
+#include "Arduino.h"
 #include "IncrementalClockStrategy.h"
 #include "SoftTimers.h"
 
