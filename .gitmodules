@@ -1,3 +1,0 @@
-[submodule "lib/win32Arduino"]
-	path = lib/win32Arduino
-	url = https://github.com/end2endzone/win32Arduino.git
