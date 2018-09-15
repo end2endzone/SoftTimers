@@ -8,7 +8,7 @@ version: "{branch} (#{build})"
 # branches to build
 branches:
   only:
-    - arduino_library_manager
+    - master
 
 #---------------------------------#
 #    environment configuration    #

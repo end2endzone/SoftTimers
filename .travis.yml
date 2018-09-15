@@ -5,7 +5,7 @@ os:
 - linux
 branches:
   only:
-  - arduino_library_manager
+  - master
 env:
   global:
     - ARDUINO_IDE_VERSION=1.8.4
