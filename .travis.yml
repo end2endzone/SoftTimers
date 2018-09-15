@@ -24,6 +24,6 @@ script:
   - cd $TRAVIS_BUILD_DIR/ci/travis; ./arduino_build_sketch.sh ToggleLedAdvanced
   - cd $TRAVIS_BUILD_DIR/ci/travis; ./build_library.sh;
   - cd $TRAVIS_BUILD_DIR/build/bin;
-    ./softtimer_unittest || true; #do not fail build even if a test fails.
+    ./softtimers_unittest || true; #do not fail build even if a test fails.
 notifications:
   email: true
