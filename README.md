@@ -3,34 +3,46 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Github Releases](https://img.shields.io/github/release/end2endzone/SoftTimers.svg)](https://github.com/end2endzone/SoftTimers/releases)
-[![Build status](https://ci.appveyor.com/api/projects/status/g20v68ngtk1ourwc/branch/master?svg=true)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master)
-[![Tests status](https://img.shields.io/appveyor/tests/end2endzone/SoftTimers/master.svg)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master/tests)
-
-AppVeyor build statistics:
-
-[![Build statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master)
 
 
-# SoftTimers
+
+# SoftTimers #
 
 The SoftTimers arduino library is a collection of software timers. It allows one to properly time multiple events and know when each "timer" expires meaning that an action is required. SoftTimers can also be used to compute the elapsed time since an event occured. The library aims at greatly simplifying multitask complexity.
 
 Library features:
-*  Provides the non-blocking equivalent to blocking `delay()` function.
+*  Provides the non-blocking equivalent to `delay()` function.
 *  Each timers encapsulate its own expiration (timeout) time.
 *  Provides elapsed time, remaining time and progress (in percentage) APIs.
 *  Supports milliseconds, microseconds or any other arbitrary time with external time counting function.
 *  Provides expiration loop count API (as if timer never expire and automatically `reset()`) to easily implement toggling, and time based state machines.
-*  Automatically handles `micros()` an `millis()` overflows / wrap around special cases.
+*  Automatically handles `micros()` and `millis()` overflows / wrap around special cases.
 *  Provides multitasking abilities to sketches.
 
-# Purpose
+## Status ##
+
+Build:
+
+| Service | Build | Tests |
+|----|-------|-------|
+| AppVeyor | [![Build status](https://img.shields.io/appveyor/ci/end2endzone/SoftTimers/master.svg?logo=appveyor)](https://ci.appveyor.com/project/end2endzone/SoftTimers) | [![Tests status](https://img.shields.io/appveyor/tests/end2endzone/SoftTimers/master.svg?logo=appveyor)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master/tests) |
+| Travis CI | [![Build Status](https://img.shields.io/travis/end2endzone/SoftTimers/master.svg?logo=travis&style=flat)](https://travis-ci.org/end2endzone/SoftTimers) |  |
+
+Statistics:
+
+| AppVeyor | Travic CI |
+|----------|-----------|
+| [![Statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) | [![Statistics](https://buildstats.info/travisci/chart/end2endzone/SoftTimers)](https://travis-ci.org/end2endzone/SoftTimers) |
+
+
+
+# Purpose #
 
 Consider the arduino [Blick](https://www.arduino.cc/en/tutorial/blink) tutorial. It uses the `delay()` function to know when to toggle a LED on and off. This approach is bad since it breaks the "realtime" property of the software to react to other event. If I want to make the LED instantly turn off when pressing a button, I had to wait for the delay to complete before processing the button.
 
 Another issue is extensibility. Making 3 LEDs blink at different time interval is much harder with delays. How about 40 LEDs? Impossible?
 
-The SoftTimers allows one to properly time multiple events and know when each "timer" expires meaning that an action is required. In this example above, a SoftTimer expires when it is time to toggle an LED.
+The SoftTimers allows one to properly time multiple events and know when each "timer" expires meaning that an action is required. In this example above, a SoftTimer expires when it is time to toggle a LED.
 
 SoftTimers also provide the elapsed time since an event occurred. In case of an interruption, the elapsed time can be used as debugging information. It can also be used as a countdown information displayed to the user.
 
@@ -39,11 +51,11 @@ The library regroups basic timer functionalities into a single class. The usual 
 SoftTimer classes are designed to be keep "simple and stupid". No software interrupts. Non-blocking. Each timer must be polled within the loop() to know their status.
 
 
-# Usage
+# Usage #
 
 The following instructions show how to use the library.
 
-## General
+## General ##
 
 Call `setTimeOutTime()` to setup the non-blocking SoftTimer then call `reset()` to restart the internal counter.
 
@@ -51,7 +63,7 @@ Within the `loop()`, use `hasTimedOut()` to know if the timer has expired.
 
 At any moment, call `getElapsedTime()` to get the absolute elapsed time since the last `reset()`.
 
-## Fade a LED
+## Fade a LED ##
 
 Fading a LED like in arduino's [Fade Example](https://www.arduino.cc/en/Tutorial/Fade) is trivial using SoftTimers. The library helps in defining the constant speed at which the LED will fade by defining the total length of the process and by easily mapping the timer "progress" to the amount of fade (PWM) used with the output pin. All of this in a non-blocking manner.
 
@@ -103,7 +115,7 @@ void loop() {
 }
 ```
 
-## Countdown or Elapsed time
+## Countdown or Elapsed time ##
 
 Any program that need to display a countdown or compute the elapsed time between two events can also benefit from SoftTimers.
 
@@ -147,7 +159,7 @@ void loop() {
 }
 ```
 
-## Timed repetitive cycles
+## Timed repetitive cycles ##
 
 SoftTimer library also help reducing repetitive timed cycles to their simplest non-blocking form. SoftTimer library automatically computes current cycle index. Any toggling or cycle scenarios can be implemented with very few lines of code.
 
@@ -212,7 +224,7 @@ void loop() {
 }
 ```
 
-## Timed restricted state machines
+## Timed restricted state machines ##
 
 SoftTimer library allows one to make an easy abstraction of time when dealing with timed restricted state machines.
 
@@ -315,42 +327,33 @@ void loop() {
 }
 ```
 
-# Building
+# Building #
 
 Please refer to file [INSTALL.md](INSTALL.md) for details on how installing/building the application.
 
-# Testing
 
-SoftTimers comes with unit tests which help maintaining the product stability and level of quality.
 
-Test are build using the Google Test v1.6.0 framework. For more information on how googletest is working, see the [google test documentation primer](https://github.com/google/googletest/blob/release-1.8.0/googletest/docs/V1_6_Primer.md).  
 
-Test are automatically build when building the solution. See [INSTALL.md](INSTALL.md) for details on how to build the software.
+# Platforms #
 
-To run tests, open a file navigator and browse to the output folder (for example `c:\projects\SoftTimers\cmake\build\bin\Release`) and run `softtimers_unittest.exe` executable.
+SoftTimers has been tested with the following platform:
 
-Test results are saved in junit format in file `SoftTimers_unittest.x86.debug.xml` or `SoftTimers_unittest.x86.release.xml` depending on the selected configuration.
+  * Linux x86/x64
+  * Windows x86/x64
 
-See also the latest test results at the beginning of the document.
 
-# Compatible with
 
-SoftTimers is only available for the Windows platform and has been tested with the following version of Windows:
 
-*   Windows XP
-*   Windows Vista
-*   Windows 7
-
-# Versioning
+# Versioning #
 
 We use [Semantic Versioning 2.0.0](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/end2endzone/SoftTimers/tags).
 
-# Authors
+# Authors #
 
 * **Antoine Beauchamp** - *Initial work* - [end2endzone](https://github.com/end2endzone)
 
 See also the list of [contributors](https://github.com/end2endzone/SoftTimers/blob/master/AUTHORS) who participated in this project.
 
-# License
+# License #
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
