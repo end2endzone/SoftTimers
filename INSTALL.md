@@ -1,112 +1,93 @@
-# SoftTimers-Installing
+# Install
 
-The library does not provide an automatic installer package. It is deployed using a zip archive which only contains the source code. It can be installed on the system by following the same steps as with other Arduino library.
-
-## Download the library .zip file
-
-The latest version of the library can be found in the project's [release page](http://github.com/end2endzone/SoftTimers/releases/latest).
-
-Each release of the library contains 3 files:
-* The archive installer in .zip format (identified as `SoftTimers.vX.Y.Z.zip`)
-* The project source code and documentation in .zip format (identified as `Source code (zip)`)
-* The project source code and documentation in tar.gz (identified as `Source code (tar.gz)`)
-
-Download the `library archive installer` from an existing tags and extract the content to a local directory (for example `c:\my_arduino_libraries`).
-
-## Import the .zip library
-
-The library can be installed on the system by following the same steps as other Arduino library.
-
-Refer to the official Arduino guide on how [importing a .zip library](http://www.arduino.cc/en/Guide/Libraries#toc4) for details.
-
-### User Error 'Zip doesn't contain a library'
-
-When importing a library in the Arduino IDE, you may get the `Zip doesn't contain a library` error message.
-
-This is probably because you tried to install the `project source code` instead of the `archive installer in .zip format`. Follow the instructions of the [Download](#download-the-library-zip-file) section.
+The library can be found, installed, or updated from the Arduino IDE using the official Arduino Library Manager (available from IDE version 1.6.2).
 
 
-# Building
+The library can be installed on the system by following the same steps as with other Arduino library.
 
-The library comes with unit tests which are not compatible with the arduino development environment and must be compiled on the windows platform.
+Refer to [Installing Additional Arduino Libraries](https://www.arduino.cc/en/Guide/Libraries) tutorial for details on how to install a third party library.
 
-The library can be build on windows for debugging and running unit tests with the help of [win32Arduino](http://github.com/end2endzone/win32Arduino) library.
+
+
+
+# Build
+
+The library unit tests can be build on Windows/Linux platform to maintain the product stability and level of quality.
 
 This section explains how to compile and build the software and how to get a test environment ready.
 
-## Prerequisites
 
-The following software must be installed on the system for compiling source code:
 
-* Visual Studio 2010 (or newer)
-* [Google C++ Testing Framework v1.6.0](https://github.com/google/googletest/tree/release-1.6.0) (untested with other versions)
-* [CMake](http://www.cmake.org/) v3.9.6 (or newer)
-* [win32Arduino](https://github.com/end2endzone/win32Arduino/tags) v2.0.0+build.37 (untested with other versions)
 
-The following software must be installed on the system for building the deploy packages:
+## Prerequisites ##
 
-* [7-Zip](http://www.7-zip.org/) v9.20 (or newwer) for building the library package.
 
-## Build steps
+### Software Requirements ###
+The following software must be installed on the system before compiling source code:
 
-### Google C++ testing framework
+* [Google C++ Testing Framework v1.8.0](https://github.com/google/googletest/tree/release-1.8.0)
+* [RapidAssist v0.3.4](https://github.com/end2endzone/RapidAssist/tree/v0.3.4)
+* [win32Arduino v2.3.0-rc.1](https://github.com/end2endzone/win32Arduino/tree/2.3.0-rc.1)
+* [CMake](http://www.cmake.org/) v3.4.3 (or newer)
 
-1) Download googletest source code as a [zip file](https://github.com/google/googletest/archive/release-1.6.0.zip) to your computer and extract to a temporary directory (for example `c:\projects\SoftTimers\third_party\googletest`).
 
-2) Generate the Visual Studio 2010 solution using the following commands:
-   * cd c:\projects\SoftTimers\third_party\googletest
-   * mkdir build
-   * cd build
-   * cmake -G "Visual Studio 10 2010" -Dgtest_force_shared_crt=ON -DCMAKE_CXX_FLAGS_DEBUG=/MDd -DCMAKE_CXX_FLAGS_RELEASE=/MD ..
 
-3) Open the generated Visual Studio 2010 solution file located in `c:\projects\SoftTimers\third_party\googletest\build\gtest.sln`.
+### Linux Requirements ###
 
-4) Build the solution.
+These are the base requirements to build source code:
 
-For building unit tests, the project needs to know where the libraries (debug & release) are located. The following environment variables should be defined:
+  * GNU-compatible Make or gmake
+  * POSIX-standard shell
+  * A C++98-standard-compliant compiler
 
-| Name                     | Value                                         |
-|--------------------------|-----------------------------------------------|
-|  GOOGLETEST_HOME         | c:\projects\SoftTimers\third_party\googletest |
 
-Note that the `GOOGLETEST_HOME` variable should match the actual directory where the source code was extracted.
- 
-### win32Arduino
 
-1) Download the [win32Arduino source code](https://github.com/end2endzone/win32Arduino/tags) and extract the content to a local directory (for example `c:\projects\SoftTimers\third_party\win32Arduino`).
+### Windows Requirements ###
 
-2) Follow build and installation instructions specified in `c:\projects\SoftTimers\third_party\win32Arduino\INSTALL.md` file.
+* Microsoft Visual C++ 2010 or newer
 
-### SoftTimers
 
-1) Download the [project source code](https://github.com/end2endzone/SoftTimers/tags) and extract the content to a temporary directory (for example c:\projects\SoftTimers).
 
-2) Generate the Visual Studio 2010 solution using the following commands:
-   * cd c:\projects\SoftTimers
-   * cd cmake
-   * mkdir build
-   * cd build
-   * cmake -G "Visual Studio 10 2010" c:\projects\SoftTimers\src
 
-3) Open the generated Visual Studio 2010 solution file located in c:\projects\SoftTimers\cmake\build\SoftTimers.sln.
+## Build steps ##
 
-4) Build the solution.
+The SoftTimers unit test uses the CMake build system to generate a platform-specific build environment. CMake reads the CMakeLists.txt files, checks for installed dependencies and then generates files for the selected build system.
 
-### Deploy packages
+The following steps show how to build the library:
 
-The library is deployed as a zip package.
+1) Download the source code from an existing [tags](https://github.com/end2endzone/SoftTimers/tags) and extract the content to a local directory (for example `c:\projects\SoftTimers` or `~/dev/SoftTimers`).
 
-Execute the following steps to build the deploy package:
+2) Open a Command Prompt (Windows) or Terminal (Linux) and browse to the project directory.
 
-ICI!!!
+3) Enter the following commands to generate the project files for your build system:
+```
+mkdir build
+cd build
+cmake ..
+```
 
-ICI!!!
+4) Build the source code.
 
-ICI!!!
+**Windows**
+```
+cmake --build . --config Release
+```
 
-ICI!!!
+**Linux**
+```
+make
+```
 
-1) ???
 
-2) ???
 
+
+# Testing #
+SoftTimers comes with unit tests which help maintaining the product stability and level of quality.
+
+Test are build using the Google Test v1.8.0 framework. For more information on how googletest is working, see the [google test documentation primer](https://github.com/google/googletest/blob/release-1.8.0/googletest/docs/V1_6_Primer.md).  
+
+To run tests, open a shell prompt and browse to the `build/bin` folder and run `softtimers_unittest` executable. For Windows users, the executable is located in `build\bin\Release`.
+
+Test results are saved in junit format in file `softtimers_unittest.release.xml`.
+
+The latest test results are available at the beginning of the [README.md](README.md) file.
