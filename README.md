@@ -19,6 +19,8 @@ Library features:
 *  Automatically handles `micros()` and `millis()` overflows / wrap around special cases.
 *  Provides multitasking abilities to sketches.
 
+
+
 ## Status ##
 
 Build:
@@ -33,6 +35,7 @@ Statistics:
 | AppVeyor | Travic CI |
 |----------|-----------|
 | [![Statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) | [![Statistics](https://buildstats.info/travisci/chart/end2endzone/SoftTimers)](https://travis-ci.org/end2endzone/SoftTimers) |
+
 
 
 
@@ -51,17 +54,64 @@ The library regroups basic timer functionalities into a single class. The usual 
 SoftTimer classes are designed to be keep "simple and stupid". No software interrupts. Non-blocking. Each timer must be polled within the loop() to know their status.
 
 
+
+
 # Usage #
 
 The following instructions show how to use the library.
 
+
+
 ## General ##
 
-Call `setTimeOutTime()` to setup the non-blocking SoftTimer then call `reset()` to restart the internal counter.
+To use a SoftTimers, create a variable of type SoftTimer in the global scope of the program.
 
-Within the `loop()`, use `hasTimedOut()` to know if the timer has expired.
+```cpp
+SoftTimer myRefreshTimer;
+```
 
-At any moment, call `getElapsedTime()` to get the absolute elapsed time since the last `reset()`.
+In `setup()`, call `setTimeOutTime()` to setup the non-blocking SoftTimer then call `reset()` to initialize the internal counter.
+
+```cpp
+void setup() {
+  myRefreshTimer.setTimeOutTime(30000); // every 30 seconds.
+  myRefreshTimer.reset();
+}
+```
+
+Within the `loop()`, call `hasTimedOut()` to know if the timer has expired. 
+
+```cpp
+void loop() {
+  if (myRefreshTimer.hasTimedOut())
+  {
+    //TODO: refresh the input pins
+    
+    myRefreshTimer.reset(); //next refresh in 30 seconds
+  }
+}
+```
+
+At any moment, call `getElapsedTime()` or `getRemainingTime()` to get the absolute elapsed/remaining time since the last `reset()`.
+
+```cpp
+void loop() {
+  if (!myRefreshTimer.hasTimedOut())
+  {
+    static uint32_t count = 0;
+    count++;
+    if (count == 1000) //print remaining time 1/1000 of loops
+    {
+      //show user how much time left in milliseconds
+      uint32_t remaining = countdown.getRemainingTime();
+      Serial.print(remaining);
+      Serial.println(" ms...");
+    }
+  }
+}
+```
+
+
 
 ## Fade a LED ##
 
@@ -115,6 +165,8 @@ void loop() {
 }
 ```
 
+
+
 ## Countdown or Elapsed time ##
 
 Any program that need to display a countdown or compute the elapsed time between two events can also benefit from SoftTimers.
@@ -158,6 +210,8 @@ void loop() {
   }
 }
 ```
+
+
 
 ## Timed repetitive cycles ##
 
@@ -223,6 +277,8 @@ void loop() {
   }
 }
 ```
+
+
 
 ## Timed restricted state machines ##
 
@@ -326,6 +382,23 @@ void loop() {
   //processState()
 }
 ```
+
+
+
+## Other ##
+
+More SoftTimer examples are also available:
+
+* [Countdown](examples/Countdown/Countdown.ino)
+* [CycleHighPin](examples/CycleHighPin/CycleHighPin.ino)
+* [FadeLed](examples/FadeLed/FadeLed.ino)
+* [ProgressBar](examples/ProgressBar/ProgressBar.ino)
+* [StateMachine](examples/StateMachine/StateMachine.ino)
+* [ToggleLed](examples/ToggleLed/ToggleLed.ino)
+* [ToggleLedAdvanced](examples/ToggleLedAdvanced/ToggleLedAdvanced.ino)
+
+
+
 
 # Building #
 
