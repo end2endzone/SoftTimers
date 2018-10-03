@@ -26,8 +26,8 @@ This section explains how to compile and build the software and how to get a tes
 The following software must be installed on the system before compiling source code:
 
 * [Google C++ Testing Framework v1.8.0](https://github.com/google/googletest/tree/release-1.8.0)
-* [RapidAssist v0.3.4](https://github.com/end2endzone/RapidAssist/tree/v0.3.4)
-* [win32Arduino v2.3.0-rc.1](https://github.com/end2endzone/win32Arduino/tree/2.3.0-rc.1)
+* [RapidAssist v0.5.0](https://github.com/end2endzone/RapidAssist/tree/0.5.0)
+* [win32Arduino v2.3.1](https://github.com/end2endzone/win32Arduino/tree/2.3.1)
 * [CMake](http://www.cmake.org/) v3.4.3 (or newer)
 
 
