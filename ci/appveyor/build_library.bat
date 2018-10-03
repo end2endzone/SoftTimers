@@ -16,7 +16,7 @@ echo ===========================================================================
 cd /d %APPVEYOR_BUILD_FOLDER%
 mkdir build >NUL 2>NUL
 cd build
-cmake ..
+cmake -DSOFTTIMERS_BUILD_EXAMPLES=ON ..
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo ============================================================================

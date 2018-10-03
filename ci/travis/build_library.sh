@@ -17,7 +17,7 @@ echo ===========================================================================
 cd $TRAVIS_BUILD_DIR
 mkdir -p build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Release -DSOFTTIMERS_BUILD_EXAMPLES=ON ..
 
 echo ============================================================================
 echo Compiling...
