@@ -84,37 +84,37 @@ jobs:
       shell: cmd
       run: call ci\github\build_library.bat
 
-    - name: Build Arduino sketch: Countdown
+    - name: Build Arduino sketch - Countdown
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat Countdown
 
-    - name: Build Arduino sketch: CycleHighPin
+    - name: Build Arduino sketch - CycleHighPin
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat CycleHighPin
 
-    - name: Build Arduino sketch: FadeLed
+    - name: Build Arduino sketch - FadeLed
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat FadeLed
 
-    - name: Build Arduino sketch: ProgressBar
+    - name: Build Arduino sketch - ProgressBar
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat ProgressBar
 
-    - name: Build Arduino sketch: StateMachine
+    - name: Build Arduino sketch - StateMachine
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat StateMachine
 
-    - name: Build Arduino sketch: ToggleLed
+    - name: Build Arduino sketch - ToggleLed
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat ToggleLed
 
-    - name: Build Arduino sketch: ToggleLedAdvanced
+    - name: Build Arduino sketch - ToggleLedAdvanced
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat ToggleLedAdvanced
