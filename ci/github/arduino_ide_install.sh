@@ -29,6 +29,7 @@ mv arduino-$ARDUINO_IDE_VERSION $HOME/arduino-ide
 
 # Add Arduino IDE to PATH
 export PATH=$PATH:$HOME/arduino-ide
+echo PATH=$PATH>> $GITHUB_ENV
 
 # Create libraries folder for current user
 mkdir -p $HOME/Arduino/libraries

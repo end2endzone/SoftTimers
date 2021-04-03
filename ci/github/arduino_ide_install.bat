@@ -14,6 +14,7 @@ echo Installing Arduino IDE to '%ARDUINO_INSTALL_DIR%'...
 
 :: Add Arduino IDE to PATH
 set PATH=%ARDUINO_INSTALL_DIR%;%PATH%
+echo PATH=%PATH%>> %GITHUB_ENV%
 
 :: Create libraries folder for current user
 mkdir %USERPROFILE%\Documents\Arduino\libraries >NUL 2>NUL
