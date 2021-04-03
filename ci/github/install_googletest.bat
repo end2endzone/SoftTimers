@@ -1,10 +1,11 @@
 @echo off
 
-:: Validate appveyor's environment
+:: Validate github's environment
 if "%GITHUB_WORKSPACE%"=="" (
   echo Please define 'GITHUB_WORKSPACE' environment variable.
   exit /B 1
 )
+
 
 echo ============================================================================
 echo Cloning googletest into %GITHUB_WORKSPACE%\third_parties\googletest
@@ -24,16 +25,15 @@ echo Compiling...
 echo ============================================================================
 mkdir build >NUL 2>NUL
 cd build
-set GTEST_ROOT=%GITHUB_WORKSPACE%\third_parties\googletest\install
-cmake -DCMAKE_INSTALL_PREFIX=%GTEST_ROOT% -Dgtest_force_shared_crt=ON -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
+cmake -DCMAKE_GENERATOR_PLATFORM=%Platform% -T %PlatformToolset% -DCMAKE_INSTALL_PREFIX=%GITHUB_WORKSPACE%\third_parties\googletest\install -Dgtest_force_shared_crt=ON -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
 if %errorlevel% neq 0 exit /b %errorlevel%
-cmake --build . --config Release
+cmake --build . --config %Configuration% -- -maxcpucount /m
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
 
 echo ============================================================================
-echo Installing into %GTEST_ROOT%
+echo Installing into %GITHUB_WORKSPACE%\third_parties\googletest\install
 echo ============================================================================
-cmake --build . --config Release --target INSTALL
+cmake --build . --config %Configuration% --target INSTALL
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
