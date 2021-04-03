@@ -6,9 +6,6 @@ if "%GITHUB_WORKSPACE%"=="" (
   exit /B 1
 )
 
-set GTEST_ROOT=%GITHUB_WORKSPACE%\third_parties\googletest\install
-set rapidassist_DIR=%GITHUB_WORKSPACE%\third_parties\RapidAssist\install
-echo rapidassist_DIR=%rapidassist_DIR%
 
 echo ============================================================================
 echo Cloning RapidAssist into %GITHUB_WORKSPACE%\third_parties\RapidAssist
@@ -24,19 +21,19 @@ git checkout 0.5.0
 echo.
 
 echo ============================================================================
-echo Compiling...
+echo Compiling RapidAssist...
 echo ============================================================================
 mkdir build >NUL 2>NUL
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=%rapidassist_DIR% ..
+cmake -DCMAKE_GENERATOR_PLATFORM=%Platform% -T %PlatformToolset% -DCMAKE_CXX_FLAGS="/D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /DWIN32" -DCMAKE_INSTALL_PREFIX=%GITHUB_WORKSPACE%\third_parties\RapidAssist\install -DCMAKE_PREFIX_PATH=%GITHUB_WORKSPACE%\third_parties\googletest\install ..
 if %errorlevel% neq 0 exit /b %errorlevel%
-cmake --build . --config Release
+cmake --build . --config %Configuration%
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
 
 echo ============================================================================
-echo Installing into %rapidassist_DIR%
+echo Installing RapidAssist into %GITHUB_WORKSPACE%\third_parties\RapidAssist\install
 echo ============================================================================
-cmake --build . --config Release --target INSTALL
+cmake --build . --config %Configuration% --target INSTALL
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.

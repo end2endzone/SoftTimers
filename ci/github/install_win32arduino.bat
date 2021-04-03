@@ -6,10 +6,6 @@ if "%GITHUB_WORKSPACE%"=="" (
   exit /B 1
 )
 
-set GTEST_ROOT=%GITHUB_WORKSPACE%\third_parties\googletest\install
-set rapidassist_DIR=%GITHUB_WORKSPACE%\third_parties\RapidAssist\install
-set win32arduino_DIR=%GITHUB_WORKSPACE%\third_parties\win32Arduino\install
-
 echo ============================================================================
 echo Cloning win32Arduino into %GITHUB_WORKSPACE%\third_parties\win32Arduino
 echo ============================================================================
@@ -24,19 +20,19 @@ git checkout 2.3.1
 echo.
 
 echo ============================================================================
-echo Compiling...
+echo Compiling win32Arduino...
 echo ============================================================================
 mkdir build >NUL 2>NUL
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=%win32arduino_DIR% ..
+cmake -DCMAKE_GENERATOR_PLATFORM=%Platform% -T %PlatformToolset% -DCMAKE_CXX_FLAGS=/D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING -DCMAKE_INSTALL_PREFIX=%GITHUB_WORKSPACE%\third_parties\win32Arduino\install -DCMAKE_PREFIX_PATH=%GITHUB_WORKSPACE%\third_parties\googletest\install;%GITHUB_WORKSPACE%\third_parties\RapidAssist\install ..
 if %errorlevel% neq 0 exit /b %errorlevel%
-cmake --build . --config Release
+cmake --build . --config %Configuration%
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
 
 echo ============================================================================
-echo Installing into %win32arduino_DIR%
+echo Installing win32Arduino into %GITHUB_WORKSPACE%\third_parties\win32Arduino\install
 echo ============================================================================
-cmake --build . --config Release --target INSTALL
+cmake --build . --config %Configuration% --target INSTALL
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.

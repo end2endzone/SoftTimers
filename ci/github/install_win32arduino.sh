@@ -7,11 +7,6 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
   exit 1;
 fi
 
-export GTEST_ROOT=$GITHUB_WORKSPACE/third_parties/googletest/install
-export rapidassist_DIR=$GITHUB_WORKSPACE/third_parties/RapidAssist/install
-export win32arduino_DIR=$GITHUB_WORKSPACE/third_parties/win32Arduino/install
-echo win32arduino_DIR=$win32arduino_DIR
-
 echo ============================================================================
 echo Cloning win32Arduino into $GITHUB_WORKSPACE/third_parties/win32Arduino
 echo ============================================================================
@@ -26,16 +21,16 @@ git checkout 2.3.1
 echo
 
 echo ============================================================================
-echo Compiling...
+echo Compiling win32Arduino...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$win32arduino_DIR ..
+cmake -DCMAKE_INSTALL_PREFIX=$win32arduino_DIR -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE\third_parties\googletest\install;$GITHUB_WORKSPACE\third_parties\RapidAssist\install ..
 cmake --build .
 echo
 
 echo ============================================================================
-echo Installing into $win32arduino_DIR
+echo Installing win32Arduino into $win32arduino_DIR
 echo ============================================================================
 make install
 echo

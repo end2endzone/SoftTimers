@@ -6,30 +6,21 @@ if "%GITHUB_WORKSPACE%"=="" (
   exit /B 1
 )
 
-set GTEST_ROOT=%GITHUB_WORKSPACE%\third_parties\googletest\install
-set rapidassist_DIR=%GITHUB_WORKSPACE%\third_parties\RapidAssist\install
-set win32arduino_DIR=%GITHUB_WORKSPACE%\third_parties\win32Arduino\install
-
 echo ============================================================================
 echo Generating SoftTimers...
 echo ============================================================================
 cd /d %GITHUB_WORKSPACE%
 mkdir build >NUL 2>NUL
 cd build
-cmake -DSOFTTIMERS_BUILD_EXAMPLES=ON ..
+cmake -DCMAKE_GENERATOR_PLATFORM=%Platform% -T %PlatformToolset% -DCMAKE_CXX_FLAGS=/D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING -DCMAKE_PREFIX_PATH=%GITHUB_WORKSPACE%\third_parties\googletest\install;%GITHUB_WORKSPACE%\third_parties\RapidAssist\install;%GITHUB_WORKSPACE%\third_parties\win32Arduino\install -DSOFTTIMERS_BUILD_EXAMPLES=ON ..
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 echo ============================================================================
 echo Compiling SoftTimers...
 echo ============================================================================
-cmake --build . --config Release
+cmake --build . --config %Configuration%
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
-
-::Delete all temporary environment variable created
-set GTEST_ROOT=
-set rapidassist_DIR=
-set win32arduino_DIR=
 
 ::Return to launch folder
 cd /d %~dp0

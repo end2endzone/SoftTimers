@@ -7,10 +7,6 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
   exit 1;
 fi
 
-export GTEST_ROOT=$GITHUB_WORKSPACE/third_parties/googletest/install
-export rapidassist_DIR=$GITHUB_WORKSPACE/third_parties/RapidAssist/install
-echo rapidassist_DIR=$rapidassist_DIR
-
 echo ============================================================================
 echo Cloning RapidAssist into $GITHUB_WORKSPACE/third_parties/RapidAssist
 echo ============================================================================
@@ -25,16 +21,16 @@ git checkout 0.5.0
 echo
 
 echo ============================================================================
-echo Compiling...
+echo Compiling RapidAssist...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$rapidassist_DIR ..
+cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/RapidAssist/install -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE\third_parties\googletest\install ..
 cmake --build .
 echo
 
 echo ============================================================================
-echo Installing into $rapidassist_DIR
+echo Installing RapidAssist into $GITHUB_WORKSPACE/third_parties/RapidAssist/install
 echo ============================================================================
 make install
 echo

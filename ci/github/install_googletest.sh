@@ -21,7 +21,7 @@ git checkout release-1.8.0
 echo
 
 echo ============================================================================
-echo Compiling...
+echo Compiling googletest...
 echo ============================================================================
 mkdir -p build
 cd build
@@ -30,7 +30,7 @@ cmake --build . -- -j4
 echo
 
 echo ============================================================================
-echo Installing into $GITHUB_WORKSPACE/third_parties/googletest/install
+echo Installing googletest into $GITHUB_WORKSPACE/third_parties/googletest/install
 echo ============================================================================
 make install
 echo
