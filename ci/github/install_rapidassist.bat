@@ -1,20 +1,20 @@
 @echo off
 
 :: Validate appveyor's environment
-if "%APPVEYOR_BUILD_FOLDER%"=="" (
-  echo Please define 'APPVEYOR_BUILD_FOLDER' environment variable.
+if "%GITHUB_WORKSPACE%"=="" (
+  echo Please define 'GITHUB_WORKSPACE' environment variable.
   exit /B 1
 )
 
-set GTEST_ROOT=%APPVEYOR_BUILD_FOLDER%\third_parties\googletest\install
-set rapidassist_DIR=%APPVEYOR_BUILD_FOLDER%\third_parties\RapidAssist\install
+set GTEST_ROOT=%GITHUB_WORKSPACE%\third_parties\googletest\install
+set rapidassist_DIR=%GITHUB_WORKSPACE%\third_parties\RapidAssist\install
 echo rapidassist_DIR=%rapidassist_DIR%
 
 echo ============================================================================
-echo Cloning RapidAssist into %APPVEYOR_BUILD_FOLDER%\third_parties\RapidAssist
+echo Cloning RapidAssist into %GITHUB_WORKSPACE%\third_parties\RapidAssist
 echo ============================================================================
-mkdir %APPVEYOR_BUILD_FOLDER%\third_parties >NUL 2>NUL
-cd %APPVEYOR_BUILD_FOLDER%\third_parties
+mkdir %GITHUB_WORKSPACE%\third_parties >NUL 2>NUL
+cd %GITHUB_WORKSPACE%\third_parties
 git clone "https://github.com/end2endzone/RapidAssist.git"
 cd RapidAssist
 echo.

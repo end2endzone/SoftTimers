@@ -1,19 +1,19 @@
 @echo off
 
 :: Validate appveyor's environment
-if "%APPVEYOR_BUILD_FOLDER%"=="" (
-  echo Please define 'APPVEYOR_BUILD_FOLDER' environment variable.
+if "%GITHUB_WORKSPACE%"=="" (
+  echo Please define 'GITHUB_WORKSPACE' environment variable.
   exit /B 1
 )
 
-set GTEST_ROOT=%APPVEYOR_BUILD_FOLDER%\third_parties\googletest\install
-set rapidassist_DIR=%APPVEYOR_BUILD_FOLDER%\third_parties\RapidAssist\install
-set win32arduino_DIR=%APPVEYOR_BUILD_FOLDER%\third_parties\win32Arduino\install
+set GTEST_ROOT=%GITHUB_WORKSPACE%\third_parties\googletest\install
+set rapidassist_DIR=%GITHUB_WORKSPACE%\third_parties\RapidAssist\install
+set win32arduino_DIR=%GITHUB_WORKSPACE%\third_parties\win32Arduino\install
 
 echo ============================================================================
 echo Generating SoftTimers...
 echo ============================================================================
-cd /d %APPVEYOR_BUILD_FOLDER%
+cd /d %GITHUB_WORKSPACE%
 mkdir build >NUL 2>NUL
 cd build
 cmake -DSOFTTIMERS_BUILD_EXAMPLES=ON ..
