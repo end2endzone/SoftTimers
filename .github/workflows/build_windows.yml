@@ -64,6 +64,11 @@ jobs:
       shell: cmd
       run: call ci\github\arduino_ide_install.bat
 
+    - name: Install SoftTimers arduino library
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: cmd
+      run: call ci\github\arduino_library_install.bat
+
     - name: Install Google Test
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
