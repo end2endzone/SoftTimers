@@ -31,7 +31,7 @@ elif [ "$RUNNER_OS" = "macOS" ]; then
 fi
 
 # Remember installation directory
-echo Installing Arduino IDE to '$ARDUINO_INSTALL_DIR'...
+echo Installing Arduino IDE to directory: $ARDUINO_INSTALL_DIR
 echo ARDUINO_INSTALL_DIR=$ARDUINO_INSTALL_DIR>> $GITHUB_ENV
 
 echo Searching for arduino executable...

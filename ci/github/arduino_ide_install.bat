@@ -9,7 +9,7 @@ curl -fsS -o %TEMP%\arduino-%ARDUINO_IDE_VERSION%-windows.zip "https://downloads
 
 :: Installing
 set ARDUINO_INSTALL_DIR=%USERPROFILE%\Desktop\arduino-%ARDUINO_IDE_VERSION%
-echo Installing Arduino IDE to '%ARDUINO_INSTALL_DIR%'...
+echo Installing Arduino IDE to directory: %ARDUINO_INSTALL_DIR%
 7z x %TEMP%\arduino-%ARDUINO_IDE_VERSION%-windows.zip "-o%USERPROFILE%\Desktop"
 
 :: Remember installation directory
