@@ -9,11 +9,22 @@ fi
 
 export ARDUINO_IDE_VERSION=1.8.13
 
+# Set download filename
+if [ "$RUNNER_OS" = "Linux" ]; then
+  export ARDUINO_IDE_FILENAME=arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz
+elif [ "$RUNNER_OS" = "macOS" ]; then
+  export ARDUINO_IDE_FILENAME=arduino-$ARDUINO_IDE_VERSION-macosx.zip
+else
+  # unknown
+  export ARDUINO_IDE_FILENAME=arduino-$ARDUINO_IDE_VERSION-unknown.zip
+fi
+
 # Download
-wget http://downloads.arduino.cc/arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz
+echo Downloading file http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
+wget http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
 
 # Installing
-tar xf arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz
+tar xf $ARDUINO_IDE_FILENAME
 mv arduino-$ARDUINO_IDE_VERSION $HOME/arduino-ide
 
 # Add Arduino IDE to PATH
