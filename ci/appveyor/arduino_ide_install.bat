@@ -1,7 +1,7 @@
 @echo off
 cd /d %~dp0
 
-set ARDUINO_IDE_VERSION=1.8.4
+set ARDUINO_IDE_VERSION=1.8.13
 
 :: Download
 echo Downloading arduino-%ARDUINO_IDE_VERSION%-windows.zip...

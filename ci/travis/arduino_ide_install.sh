@@ -7,7 +7,7 @@ if [ "$TRAVIS_BUILD_DIR" = "" ]; then
   exit 1;
 fi
 
-export ARDUINO_IDE_VERSION=1.8.4
+export ARDUINO_IDE_VERSION=1.8.13
 
 # Download
 wget http://downloads.arduino.cc/arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz
