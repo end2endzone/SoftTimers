@@ -11,7 +11,8 @@ export ARDUINO_BOARD="arduino:avr:nano:cpu=atmega328"
 export ARDUINO_INO_FILE=$GITHUB_WORKSPACE/examples/$1/$1.ino
 
 # Add Arduino IDE to PATH
-export PATH=$PATH:$HOME/arduino-ide
+echo Expecting Arduino IDE installed in directory: $ARDUINO_INSTALL_DIR
+export PATH=$PATH:$ARDUINO_INSTALL_DIR
 
 echo ==========================================================================================================
 echo Compiling $ARDUINO_INO_FILE

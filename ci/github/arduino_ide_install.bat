@@ -12,9 +12,8 @@ set ARDUINO_INSTALL_DIR=%USERPROFILE%\Desktop\arduino-%ARDUINO_IDE_VERSION%
 echo Installing Arduino IDE to '%ARDUINO_INSTALL_DIR%'...
 7z x %TEMP%\arduino-%ARDUINO_IDE_VERSION%-windows.zip "-o%USERPROFILE%\Desktop"
 
-:: Add Arduino IDE to PATH
-set PATH=%ARDUINO_INSTALL_DIR%;%PATH%
-echo PATH=%PATH%>> %GITHUB_ENV%
+:: Remember installation directory
+echo ARDUINO_INSTALL_DIR=%ARDUINO_INSTALL_DIR%>> %GITHUB_ENV%
 
 :: Create libraries folder for current user
 mkdir %USERPROFILE%\Documents\Arduino\libraries >NUL 2>NUL

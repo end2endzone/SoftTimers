@@ -1,8 +1,18 @@
 @echo off
 
+:: Validate appveyor's environment
+if "%GITHUB_WORKSPACE%"=="" (
+  echo Please define 'GITHUB_WORKSPACE' environment variable.
+  exit /B 1
+)
+
 :: Navigate to root directory of repository
 cd /d %~dp0
 cd ..\..
+
+:: Add Arduino IDE to PATH
+echo Expecting Arduino IDE installed in directory: %ARDUINO_INSTALL_DIR%
+set PATH=%ARDUINO_INSTALL_DIR%;%PATH%
 
 set ARDUINO_INO_FILE=%cd%\examples\%1\%1.ino
 echo ==========================================================================================================

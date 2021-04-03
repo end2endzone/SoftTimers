@@ -24,12 +24,13 @@ echo Downloading file http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
 wget http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
 
 # Installing
+export ARDUINO_INSTALL_DIR=$HOME/arduino-ide
+echo Installing Arduino IDE to '$ARDUINO_INSTALL_DIR'...
 tar xf $ARDUINO_IDE_FILENAME
-mv arduino-$ARDUINO_IDE_VERSION $HOME/arduino-ide
+mv arduino-$ARDUINO_IDE_VERSION $ARDUINO_INSTALL_DIR
 
-# Add Arduino IDE to PATH
-export PATH=$PATH:$HOME/arduino-ide
-echo PATH=$PATH>> $GITHUB_ENV
+# Remember installation directory
+echo ARDUINO_INSTALL_DIR=$ARDUINO_INSTALL_DIR>> $GITHUB_ENV
 
 # Create libraries folder for current user
 mkdir -p $HOME/Arduino/libraries
