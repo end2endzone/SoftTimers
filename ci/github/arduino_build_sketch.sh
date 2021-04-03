@@ -19,4 +19,8 @@ echo Compiling $ARDUINO_INO_FILE
 echo ==========================================================================================================
 
 # --verbose-build
-arduino --verify --board $ARDUINO_BOARD $ARDUINO_INO_FILE
+if [ "$RUNNER_OS" = "Linux" ]; then
+  arduino --verify --board $ARDUINO_BOARD $ARDUINO_INO_FILE
+elif [ "$RUNNER_OS" = "macOS" ]; then
+  Arduino --verify --board $ARDUINO_BOARD $ARDUINO_INO_FILE
+fi
