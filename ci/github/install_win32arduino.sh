@@ -25,12 +25,12 @@ echo Compiling win32Arduino...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$win32arduino_DIR -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE\third_parties\googletest\install;$GITHUB_WORKSPACE\third_parties\RapidAssist\install ..
+cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/win32Arduino/install -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE/third_parties/googletest/install;$GITHUB_WORKSPACE/third_parties/RapidAssist/install ..
 cmake --build .
 echo
 
 echo ============================================================================
-echo Installing win32Arduino into $win32arduino_DIR
+echo Installing win32Arduino into $GITHUB_WORKSPACE/third_parties/win32Arduino/install
 echo ============================================================================
 make install
 echo

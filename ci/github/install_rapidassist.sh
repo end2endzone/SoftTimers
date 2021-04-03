@@ -25,7 +25,7 @@ echo Compiling RapidAssist...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/RapidAssist/install -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE\third_parties\googletest\install ..
+cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/RapidAssist/install -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE/third_parties/googletest/install ..
 cmake --build .
 echo
 
