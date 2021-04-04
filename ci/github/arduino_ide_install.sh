@@ -19,7 +19,7 @@ fi
 
 # Download
 echo Downloading file http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
-wget http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
+wget --no-verbose http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
 
 # Installing
 tar xf $ARDUINO_IDE_FILENAME
@@ -36,7 +36,6 @@ echo ARDUINO_INSTALL_DIR=$ARDUINO_INSTALL_DIR>> $GITHUB_ENV
 
 echo Searching for arduino executable...
 export PATH=$PATH:$ARDUINO_INSTALL_DIR
-which Arduino
 if [ "$RUNNER_OS" = "Linux" ]; then
   which arduino
 elif [ "$RUNNER_OS" = "macOS" ]; then
