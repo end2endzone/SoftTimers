@@ -21,7 +21,7 @@ cd RapidAssist
 echo
 
 echo Checking out version v0.5.0...
-git checkout 0.5.0
+git -c advice.detachedHead=false checkout 0.5.0
 echo
 
 echo ============================================================================

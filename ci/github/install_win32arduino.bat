@@ -21,7 +21,7 @@ cd win32Arduino
 echo.
 
 echo Checking out version 2.3.1...
-git checkout 2.3.1
+git -c advice.detachedHead=false checkout 2.3.1
 echo.
 
 echo ============================================================================
