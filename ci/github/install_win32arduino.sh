@@ -26,7 +26,7 @@ echo ===========================================================================
 mkdir -p build
 cd build
 echo Configure...
-cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/win32Arduino/install -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE/third_parties/googletest/install;$GITHUB_WORKSPACE/third_parties/RapidAssist/install ..
+cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/win32Arduino/install -DCMAKE_PREFIX_PATH="$GITHUB_WORKSPACE/third_parties/googletest/install;$GITHUB_WORKSPACE/third_parties/RapidAssist/install" ..
 echo Buliding...
 cmake --build .
 echo
