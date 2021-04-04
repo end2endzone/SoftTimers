@@ -10,7 +10,7 @@ fi
 export CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/googletest/install
 
 echo ============================================================================
-echo Cloning googletest into $CMAKE_INSTALL_PREFIX
+echo Cloning googletest into $GITHUB_WORKSPACE/third_parties/googletest
 echo ============================================================================
 mkdir -p $GITHUB_WORKSPACE/third_parties
 cd $GITHUB_WORKSPACE/third_parties

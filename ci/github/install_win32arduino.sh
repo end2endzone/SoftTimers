@@ -14,7 +14,7 @@ export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/Rap
 export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/win32Arduino/install"
 
 echo ============================================================================
-echo Cloning win32Arduino into $CMAKE_INSTALL_PREFIX
+echo Cloning win32Arduino into $GITHUB_WORKSPACE/third_parties/win32Arduino
 echo ============================================================================
 mkdir -p $GITHUB_WORKSPACE/third_parties
 cd $GITHUB_WORKSPACE/third_parties

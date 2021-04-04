@@ -9,7 +9,7 @@ if "%GITHUB_WORKSPACE%"=="" (
 set CMAKE_INSTALL_PREFIX=%GITHUB_WORKSPACE%\third_parties\googletest\install
 
 echo ============================================================================
-echo Cloning googletest into %CMAKE_INSTALL_PREFIX%
+echo Cloning googletest into %GITHUB_WORKSPACE%\third_parties\googletest
 echo ============================================================================
 mkdir %GITHUB_WORKSPACE%\third_parties >NUL 2>NUL
 cd %GITHUB_WORKSPACE%\third_parties

@@ -11,7 +11,7 @@ set CMAKE_PREFIX_PATH=
 set CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH%;%GITHUB_WORKSPACE%\third_parties\googletest\install
 
 echo ============================================================================
-echo Cloning RapidAssist into %CMAKE_INSTALL_PREFIX%
+echo Cloning RapidAssist into %GITHUB_WORKSPACE%\third_parties\RapidAssist
 echo ============================================================================
 mkdir %GITHUB_WORKSPACE%\third_parties >NUL 2>NUL
 cd %GITHUB_WORKSPACE%\third_parties

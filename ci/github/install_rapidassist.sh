@@ -12,7 +12,7 @@ unset CMAKE_PREFIX_PATH
 export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/googletest/install"
 
 echo ============================================================================
-echo Cloning RapidAssist into $CMAKE_INSTALL_PREFIX
+echo Cloning RapidAssist into $GITHUB_WORKSPACE/third_parties/RapidAssist
 echo ============================================================================
 mkdir -p $GITHUB_WORKSPACE/third_parties
 cd $GITHUB_WORKSPACE/third_parties

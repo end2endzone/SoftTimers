@@ -12,7 +12,7 @@ set CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH%;%GITHUB_WORKSPACE%\third_parties\googl
 set CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH%;%GITHUB_WORKSPACE%\third_parties\RapidAssist\install
 
 echo ============================================================================
-echo Cloning win32Arduino into %CMAKE_INSTALL_PREFIX%
+echo Cloning win32Arduino into %GITHUB_WORKSPACE%\third_parties\win32Arduino
 echo ============================================================================
 mkdir %GITHUB_WORKSPACE%\third_parties >NUL 2>NUL
 cd %GITHUB_WORKSPACE%\third_parties
