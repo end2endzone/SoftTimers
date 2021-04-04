@@ -7,8 +7,14 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
   exit 1;
 fi
 
+set CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/win32Arduino/install
+unset CMAKE_PREFIX_PATH
+export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/googletest/install"
+export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/RapidAssist/install"
+export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/win32Arduino/install"
+
 echo ============================================================================
-echo Cloning win32Arduino into $GITHUB_WORKSPACE/third_parties/win32Arduino
+echo Cloning win32Arduino into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 mkdir -p $GITHUB_WORKSPACE/third_parties
 cd $GITHUB_WORKSPACE/third_parties
@@ -26,13 +32,13 @@ echo ===========================================================================
 mkdir -p build
 cd build
 echo Configure...
-cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/win32Arduino/install -DCMAKE_PREFIX_PATH="$GITHUB_WORKSPACE/third_parties/googletest/install;$GITHUB_WORKSPACE/third_parties/RapidAssist/install" ..
+cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH" ..
 echo Buliding...
 cmake --build .
 echo
 
 echo ============================================================================
-echo Installing win32Arduino into $GITHUB_WORKSPACE/third_parties/win32Arduino/install
+echo Installing win32Arduino into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 make install
 echo

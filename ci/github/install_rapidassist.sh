@@ -7,8 +7,12 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
   exit 1;
 fi
 
+set CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/RapidAssist/install
+unset CMAKE_PREFIX_PATH
+export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/googletest/install"
+
 echo ============================================================================
-echo Cloning RapidAssist into $GITHUB_WORKSPACE/third_parties/RapidAssist
+echo Cloning RapidAssist into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 mkdir -p $GITHUB_WORKSPACE/third_parties
 cd $GITHUB_WORKSPACE/third_parties
@@ -25,12 +29,12 @@ echo Compiling RapidAssist...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/RapidAssist/install -DCMAKE_PREFIX_PATH=$GITHUB_WORKSPACE/third_parties/googletest/install ..
+cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
 cmake --build .
 echo
 
 echo ============================================================================
-echo Installing RapidAssist into $GITHUB_WORKSPACE/third_parties/RapidAssist/install
+echo Installing RapidAssist into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 make install
 echo

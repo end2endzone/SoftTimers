@@ -7,8 +7,10 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
   exit 1;
 fi
 
+set CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/googletest/install
+
 echo ============================================================================
-echo Cloning googletest into $GITHUB_WORKSPACE/third_parties/googletest
+echo Cloning googletest into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 mkdir -p $GITHUB_WORKSPACE/third_parties
 cd $GITHUB_WORKSPACE/third_parties
@@ -25,12 +27,12 @@ echo Compiling googletest...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/googletest/install -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
+cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
 cmake --build . -- -j4
 echo
 
 echo ============================================================================
-echo Installing googletest into $GITHUB_WORKSPACE/third_parties/googletest/install
+echo Installing googletest into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 make install
 echo
