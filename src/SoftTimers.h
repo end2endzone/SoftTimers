@@ -17,7 +17,7 @@ public:
    * Description:
    *   Defines a generic 32 bits counting function.
    ****************************************************************************/
-  typedef uint32_t (*CounterFunctionPointer)();
+  typedef unsigned long (*CounterFunctionPointer)();
 
   /****************************************************************************
    * Description:

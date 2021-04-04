@@ -1,5 +1,7 @@
 Changes for 1.4.0:
 
+* New feature: Support for ESP8266.
+* Fixed issue #5: error: invalid conversion from 'long unsigned int (*)()' to 'SoftTimer::CounterFunctionPointer {aka unsigned int (*)()}' [-fpermissive]
 * Fixed issue #6: Build on GitHub Actions
 
 
