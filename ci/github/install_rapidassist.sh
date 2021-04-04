@@ -29,7 +29,7 @@ echo Compiling RapidAssist...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH ..
+cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH" ..
 cmake --build .
 echo
 
