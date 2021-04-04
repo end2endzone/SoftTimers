@@ -24,10 +24,10 @@ wget --no-verbose http://downloads.arduino.cc/$ARDUINO_IDE_FILENAME
 # Installing
 tar xf $ARDUINO_IDE_FILENAME
 if [ "$RUNNER_OS" = "Linux" ]; then
-  export ARDUINO_INSTALL_DIR=$HOME/arduino-ide
+  export ARDUINO_INSTALL_DIR=$PWD/arduino-ide
   mv arduino-$ARDUINO_IDE_VERSION $ARDUINO_INSTALL_DIR
 elif [ "$RUNNER_OS" = "macOS" ]; then
-  export ARDUINO_INSTALL_DIR=$HOME/Arduino.app/Contents/MacOS
+  export ARDUINO_INSTALL_DIR=$PWD/Arduino.app/Contents/MacOS
 fi
 
 # Remember installation directory
