@@ -7,7 +7,7 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
   exit 1;
 fi
 
-set CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/googletest/install
+export CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/googletest/install
 
 echo ============================================================================
 echo Cloning googletest into $CMAKE_INSTALL_PREFIX

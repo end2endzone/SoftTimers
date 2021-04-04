@@ -7,7 +7,7 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
   exit 1;
 fi
 
-set CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/RapidAssist/install
+export CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/RapidAssist/install
 unset CMAKE_PREFIX_PATH
 export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/googletest/install"
 
