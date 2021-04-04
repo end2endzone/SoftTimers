@@ -24,8 +24,8 @@ void setup() {
 }
 
 void loop() {
-  uint32_t loopCount = cyclePinTimer.getLoopCount();
-  uint32_t pinHighNumber = (loopCount % 3); //from 0 to 2
+  unsigned long loopCount = cyclePinTimer.getLoopCount();
+  unsigned long pinHighNumber = (loopCount % 3); //from 0 to 2
   
   if (pinHighNumber == 0)
   {

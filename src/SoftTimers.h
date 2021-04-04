@@ -52,14 +52,14 @@ public:
    *   getElapsedTime() returns the elapsed time since the last reset()
    *   and now.
    ****************************************************************************/
-  uint32_t getElapsedTime();
+  unsigned long getElapsedTime();
 
   /****************************************************************************
    * Description:
    *   getRemainingTime() returns the remaining time until the timer times out.
    *   Useful if one needs to show feedback to user.
    ****************************************************************************/
-  uint32_t getRemainingTime();
+  unsigned long getRemainingTime();
 
   /****************************************************************************
    * Description:
@@ -68,14 +68,14 @@ public:
    * Parameters:
    *   iTimeOutTime: The given time out time in millisecond.
    ****************************************************************************/
-  void setTimeOutTime(uint32_t iTimeOutTime);
+  void setTimeOutTime(unsigned long iTimeOutTime);
 
   /****************************************************************************
    * Description:
    *   getTimeOutTime() returns the time out time at which hasTimedOut()
    *   will return true.
    ****************************************************************************/
-  uint32_t getTimeOutTime();
+  unsigned long getTimeOutTime();
 
   /****************************************************************************
    * Description:
@@ -106,12 +106,12 @@ public:
    *   if the timer would automatically reset() when timing out.
    *   Useful for calculating pins that should toggle when timer expires.
    ****************************************************************************/
-  uint32_t getLoopCount();
+  unsigned long getLoopCount();
 
 protected:
   CounterFunctionPointer mCntFuncPtr;
-  volatile uint32_t mStartTime; 
-  uint32_t mTimeOutTime;
+  volatile unsigned long mStartTime; 
+  unsigned long mTimeOutTime;
 };
 
 

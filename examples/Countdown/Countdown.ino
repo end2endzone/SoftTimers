@@ -23,7 +23,7 @@ void loop() {
   if (!countdown.hasTimedOut())
   {
     //show user how much time left in milliseconds
-    uint32_t remaining = countdown.getRemainingTime();
+    unsigned long remaining = countdown.getRemainingTime();
     Serial.print(remaining);
     Serial.println(" ms...");
   }

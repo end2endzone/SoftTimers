@@ -20,7 +20,7 @@ void setup() {
 }
 
 void loop() {
-  uint32_t loopCount = togglePinTimer.getLoopCount();
+  unsigned long loopCount = togglePinTimer.getLoopCount();
   bool pinHigh = ((loopCount % 2) == 0); //using 0 to get pin HIGH at the beginning of the sketch
   if (pinHigh)
   {

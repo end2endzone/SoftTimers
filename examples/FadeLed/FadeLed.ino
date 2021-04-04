@@ -23,7 +23,7 @@ void setup() {
 
 void loop() {
   //determine the direction of brightness
-  int direction = fadeTimer.getLoopCount() % 2; //returns 0 or 1
+  unsigned long direction = fadeTimer.getLoopCount() % 2; //returns 0 or 1
   bool increasing = (direction == 0); //assign increasing brightness with direction 0
 
   //get progress

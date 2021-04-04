@@ -10,14 +10,14 @@
 
 SoftTimer::SoftTimer()
 {
-  mTimeOutTime = (uint32_t)0xFFFFFFFF; //maximum, never times out
+  mTimeOutTime = (unsigned long)0xFFFFFFFF; //maximum, never times out
   mCntFuncPtr = &millis;
   reset();
 }
 
 SoftTimer::SoftTimer(CounterFunctionPointer iCntFuncPtr)
 {
-  mTimeOutTime = (uint32_t)0xFFFFFFFF; //maximum
+  mTimeOutTime = (unsigned long)0xFFFFFFFF; //maximum
   mCntFuncPtr = iCntFuncPtr;
   reset();
 }
@@ -31,33 +31,33 @@ void SoftTimer::reset()
   mStartTime = mCntFuncPtr();
 }
 
-uint32_t SoftTimer::getElapsedTime()
+unsigned long SoftTimer::getElapsedTime()
 {
   //note: this code is actually wrap around safe.
   //tested on windows platform and Arduino Nano v3.
-  uint32_t now = mCntFuncPtr();
-  uint32_t elapsedTime = now - mStartTime;
+  unsigned long now = mCntFuncPtr();
+  unsigned long elapsedTime = now - mStartTime;
   return elapsedTime;
 }
 
-uint32_t SoftTimer::getRemainingTime()
+unsigned long SoftTimer::getRemainingTime()
 {
   //note: this code is actually wrap around safe.
   //tested on windows platform and Arduino Nano v3.
-  uint32_t now = mCntFuncPtr();
-  uint32_t elapsedTime = now - mStartTime;
+  unsigned long now = mCntFuncPtr();
+  unsigned long elapsedTime = now - mStartTime;
   if (elapsedTime > mTimeOutTime)
     return 0;
-  uint32_t remaining = mTimeOutTime - elapsedTime;
+  unsigned long remaining = mTimeOutTime - elapsedTime;
   return remaining;
 }
 
-void SoftTimer::setTimeOutTime(uint32_t iTimeOutTime)
+void SoftTimer::setTimeOutTime(unsigned long iTimeOutTime)
 {
   mTimeOutTime = iTimeOutTime;
 }
 
-uint32_t SoftTimer::getTimeOutTime()
+unsigned long SoftTimer::getTimeOutTime()
 {
   return mTimeOutTime;
 }
@@ -65,7 +65,7 @@ uint32_t SoftTimer::getTimeOutTime()
 bool SoftTimer::hasTimedOut()
 {
   //update time value
-  uint32_t elapsedTime = getElapsedTime();
+  unsigned long elapsedTime = getElapsedTime();
   if (elapsedTime >= mTimeOutTime)
     return true;
   return false;
@@ -73,7 +73,7 @@ bool SoftTimer::hasTimedOut()
 
 double SoftTimer::getProgress()
 {
-  uint32_t elapsed = getElapsedTime();
+  unsigned long elapsed = getElapsedTime();
 
   //warning: elapsed time can actually be greater than time out time.
   if (elapsed >= mTimeOutTime)
@@ -83,9 +83,9 @@ double SoftTimer::getProgress()
   return double(elapsed)/double(mTimeOutTime);
 }
 
-uint32_t SoftTimer::getLoopCount()
+unsigned long SoftTimer::getLoopCount()
 {
-  uint32_t elapsed = getElapsedTime();
+  unsigned long elapsed = getElapsedTime();
 
   if (elapsed == 0)
     return 0;
@@ -93,13 +93,13 @@ uint32_t SoftTimer::getLoopCount()
   //note that elapsed time is decreased of 1 unit
   //this allows to have a count of 0 when exactly 
   //timing out.
-  uint32_t count = (elapsed-1)/mTimeOutTime;
+  unsigned long count = (elapsed-1)/mTimeOutTime;
   return count;
 }
 
 double SoftTimer::getLoopProgress()
 {
-  uint32_t elapsed = getElapsedTime();
-  uint32_t progress = elapsed % (mTimeOutTime);
+  unsigned long elapsed = getElapsedTime();
+  unsigned long progress = elapsed % (mTimeOutTime);
   return double(progress)/double(mTimeOutTime);
 }
