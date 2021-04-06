@@ -1,3 +1,4 @@
+
 ![SoftTimers logo](https://github.com/end2endzone/SoftTimers/raw/master/docs/SoftTimers-splashscreen.png)
 
 
@@ -25,16 +26,18 @@ Library features:
 
 Build:
 
-| Service | Build | Tests |
-|----|-------|-------|
-| AppVeyor | [![Build status](https://img.shields.io/appveyor/ci/end2endzone/SoftTimers/master.svg?logo=appveyor)](https://ci.appveyor.com/project/end2endzone/SoftTimers) | [![Tests status](https://img.shields.io/appveyor/tests/end2endzone/SoftTimers/master.svg?logo=appveyor)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master/tests) |
-| Travis CI | [![Build Status](https://img.shields.io/travis/end2endzone/SoftTimers/master.svg?logo=travis&style=flat)](https://travis-ci.org/end2endzone/SoftTimers) |  |
+| Service/Platform    | Build                                                                                                                                                                                           | Tests                                                                                                                                                                                                                                                          |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| AppVeyor            | [![Build status](https://img.shields.io/appveyor/ci/end2endzone/SoftTimers/master.svg?logo=AppVeyor&logoColor=white)](https://ci.appveyor.com/project/end2endzone/SoftTimers)                 | [![Tests status](https://img.shields.io/appveyor/tests/end2endzone/SoftTimers/master.svg?logo=AppVeyor&logoColor=white)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master/tests)                                                         |
+| Travis CI           | [![Build Status](https://img.shields.io/travis/end2endzone/SoftTimers/master.svg?logo=Travis-CI&style=flat&logoColor=white)](https://travis-ci.org/end2endzone/SoftTimers)                    |                                                                                                                                                                                                                                                                |
+| Windows Server 2019 | [![Build on Windows](https://github.com/end2endzone/SoftTimers/actions/workflows/build_windows.yml/badge.svg)](https://github.com/end2endzone/SoftTimers/actions/workflows/build_windows.yml) | [![Tests on Windows](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/end2endzone/58cf6c72c08e706335337d5ef9ca48e8/raw/SoftTimers.master.Windows.json)](https://github.com/end2endzone/SoftTimers/actions/workflows/build_windows.yml) |
+| Ubuntu 20.04        | [![Build on Linux](https://github.com/end2endzone/SoftTimers/actions/workflows/build_linux.yml/badge.svg)](https://github.com/end2endzone/SoftTimers/actions/workflows/build_linux.yml)       | [![Tests on Linux](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/end2endzone/58cf6c72c08e706335337d5ef9ca48e8/raw/SoftTimers.master.Linux.json)](https://github.com/end2endzone/SoftTimers/actions/workflows/build_linux.yml)       |
 
 Statistics:
 
-| AppVeyor | Travic CI |
-|----------|-----------|
-| [![Statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) | [![Statistics](https://buildstats.info/travisci/chart/end2endzone/SoftTimers)](https://travis-ci.org/end2endzone/SoftTimers) |
+| AppVeyor                                                                                                                                               | Travic CI                                                                                                                      | GitHub                                                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [![Statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) | [![Statistics](https://buildstats.info/travisci/chart/end2endzone/SoftTimers)](https://travis-ci.org/end2endzone/SoftTimers) | [![Statistics](https://buildstats.info/github/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) |
 
 
 
