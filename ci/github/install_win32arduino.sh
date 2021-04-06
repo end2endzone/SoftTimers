@@ -22,8 +22,8 @@ git clone "https://github.com/end2endzone/win32Arduino.git"
 cd win32Arduino
 echo
 
-echo Checking out version 2.3.1...
-git -c advice.detachedHead=false checkout 2.3.1
+echo Checking out version 2.4.0...
+git -c advice.detachedHead=false checkout 2.4.0
 echo
 
 echo ============================================================================

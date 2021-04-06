@@ -9,8 +9,8 @@ set(   LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 # Dependencies
 ##############################################################################################################################################
 find_package(GTest REQUIRED)
-find_package(rapidassist 0.5.0 REQUIRED)
-find_package(win32arduino 2.3.1 REQUIRED)
+find_package(rapidassist 0.9.1 REQUIRED)
+find_package(win32arduino 2.4.0 REQUIRED)
 
 
 ##############################################################################################################################################

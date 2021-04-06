@@ -5,12 +5,12 @@
 
 #include <gtest/gtest.h>
 
-#include "rapidassist/gtesthelp.h"
+#include "rapidassist/environment.h"
 
 int main(int argc, char **argv)
 {
   //define default values for xml output report
-  if (ra::gtesthelp::isDebugCode())
+  if (ra::environment::IsConfigurationDebug())
     ::testing::GTEST_FLAG(output) = "xml:softtimers_unittest.debug.xml";
   else
     ::testing::GTEST_FLAG(output) = "xml:softtimers_unittest.release.xml";

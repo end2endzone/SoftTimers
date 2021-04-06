@@ -12,8 +12,8 @@ namespace arduino { namespace test
 {
   IncrementalClockStrategy & gClock = IncrementalClockStrategy::getInstance();
 
-  static uint32_t gLocalCounter = 0;
-  uint32_t getLocalCounter()
+  static unsigned long gLocalCounter = 0;
+  unsigned long getLocalCounter()
   {
     return gLocalCounter;
   }
