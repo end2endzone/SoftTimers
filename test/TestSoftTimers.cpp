@@ -46,7 +46,7 @@ namespace arduino { namespace test
   {
     SoftTimerMillis t;
     
-    ASSERT_LT(t.getElapsedTime(), (uint32_t)20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 ms epsilon since time can actually flows between contructor time and current time
     ASSERT_FALSE( t.hasTimedOut() );
 
     t.setTimeOutTime(300); //0.3 second.
@@ -55,8 +55,8 @@ namespace arduino { namespace test
 
     //wait for the delay to expire
     //which should expires the timer
-    uint32_t now = millis();
-    uint32_t until = now+300;
+    unsigned long now = millis();
+    unsigned long until = now+300;
     while(millis() < until)
     {
     }
@@ -64,7 +64,7 @@ namespace arduino { namespace test
     ASSERT_TRUE( t.hasTimedOut() );
     t.reset();
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), (uint32_t)20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 ms epsilon since time can actually flows between contructor time and current time
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testMacrosOverflow)
@@ -73,7 +73,7 @@ namespace arduino { namespace test
 
     //wait for the micros() function to *almost* wrap around
     gClock.setMicrosecondsCounter(0xFFFFF000);
-    uint32_t until = 0xFFFFFF00; //255 usec before wrapping around
+    unsigned long until = 0xFFFFFF00; //255 usec before wrapping around
     while(micros() < until)
     {
     }
@@ -83,7 +83,7 @@ namespace arduino { namespace test
     t.reset(); //expecting start time of ~0xFFFFFF08
 
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), (uint32_t)20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 ms epsilon since time can actually flows between contructor time and current time
 
     //wait the micros() function to actually wrap around
     //from ~0xFFFFFF08 to 0xFFFFFFFF
@@ -101,21 +101,21 @@ namespace arduino { namespace test
     ASSERT_NEAR(t.getElapsedTime(), 305, 20); //allow 20usec epsilon
     
     //wait for time to actually time out
-    uint32_t now = micros();
+    unsigned long now = micros();
     until = now+250; // ~305usec to 555usec
     while(micros() < until)
     {
     }
     
     ASSERT_TRUE( t.hasTimedOut() );
-    ASSERT_GT(t.getElapsedTime(), (uint32_t)500);
+    ASSERT_GT(t.getElapsedTime(), (unsigned long)500);
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testMillisConfiguration)
   {
     SoftTimer t(&millis);
 
-    ASSERT_LT(t.getElapsedTime(), (uint32_t)2); //2 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (unsigned long)2); //2 ms epsilon since time can actually flows between contructor time and current time
     ASSERT_FALSE( t.hasTimedOut() );
 
     t.setTimeOutTime(300); //300ms second.
@@ -124,8 +124,8 @@ namespace arduino { namespace test
 
     //wait for the delay to expire
     //which should expires the timer
-    uint32_t now = millis();
-    uint32_t until = now+300;
+    unsigned long now = millis();
+    unsigned long until = now+300;
     while(millis() < until)
     {
     }
@@ -133,7 +133,7 @@ namespace arduino { namespace test
     ASSERT_TRUE( t.hasTimedOut() );
     t.reset();
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), (uint32_t)2); //2 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (unsigned long)2); //2 ms epsilon since time can actually flows between contructor time and current time
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testProgress)
