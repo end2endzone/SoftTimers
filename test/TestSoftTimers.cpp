@@ -67,7 +67,7 @@ namespace arduino { namespace test
     ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 ms epsilon since time can actually flows between contructor time and current time
   }
   //--------------------------------------------------------------------------------------------------
-  TEST_F(TestSoftTimers, testMacrosOverflow)
+  TEST_F(TestSoftTimers, testMicrosOverflow)
   {
     SoftTimerMicros t;
 
@@ -83,7 +83,7 @@ namespace arduino { namespace test
     t.reset(); //expecting start time of ~0xFFFFFF08
 
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 usec epsilon since time can actually flows between contructor time and current time
 
     //wait the micros() function to actually wrap around
     //from ~0xFFFFFF08 to 0xFFFFFFFF
@@ -91,23 +91,23 @@ namespace arduino { namespace test
     {
       //until micros() wraps around
     }
-    until = 50; //from 0 to 50
+    until = 50; //from ~0x00000000 to more than 50 usec.
     while(micros() < until)
     {
     }
 
     //assert elapsed time should be close to 305 usec (255+50)
-    ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_NEAR(t.getElapsedTime(), 305, 20); //allow 20usec epsilon
+    ASSERT_FALSE( t.hasTimedOut() ) << "Unexpected timeout! getElapsedTime() returns " << t.getElapsedTime() << ". micros() returns " << micros();
+    ASSERT_NEAR(t.getElapsedTime(), 305, 20); //allow 20 usec epsilon
     
-    //wait for time to actually time out
+    //wait for timer to actually time out
     unsigned long now = micros();
-    until = now+250; // ~305usec to 555usec
+    until = now+250; // from ~305 usec to ~555 usec
     while(micros() < until)
     {
     }
     
-    ASSERT_TRUE( t.hasTimedOut() );
+    ASSERT_TRUE( t.hasTimedOut() ) << "Expected a time out! getElapsedTime() returns " << t.getElapsedTime() << ". micros() returns " << micros();
     ASSERT_GT(t.getElapsedTime(), (unsigned long)500);
   }
   //--------------------------------------------------------------------------------------------------
