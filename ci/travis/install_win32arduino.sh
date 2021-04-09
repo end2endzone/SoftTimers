@@ -3,7 +3,7 @@ set -e
 
 # Validate Travis CI environment
 if [ "$TRAVIS_BUILD_DIR" = "" ]; then
-  echo "Please define 'GITHUB_WORKSPACE' environment variable.";
+  echo "Please define 'TRAVIS_BUILD_DIR' environment variable.";
   exit 1;
 fi
 
@@ -18,7 +18,7 @@ echo Cloning win32Arduino into $TRAVIS_BUILD_DIR/third_parties/win32Arduino
 echo ============================================================================
 mkdir -p $TRAVIS_BUILD_DIR/third_parties
 cd $TRAVIS_BUILD_DIR/third_parties
-#git clone "https://github.com/end2endzone/win32Arduino.git"
+git clone "https://github.com/end2endzone/win32Arduino.git"
 cd win32Arduino
 echo
 
