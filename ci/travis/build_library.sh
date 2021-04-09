@@ -22,7 +22,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DSOFTTIMERS_BUILD_EXAMPLES=ON ..
 echo ============================================================================
 echo Compiling...
 echo ============================================================================
-cmake --build .
+cmake --build . -- -j4
 echo
 
 # Delete all temporary environment variable created
