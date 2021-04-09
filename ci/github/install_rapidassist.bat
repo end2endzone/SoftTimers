@@ -1,6 +1,6 @@
 @echo off
 
-:: Validate appveyor's environment
+:: Validate github's environment
 if "%GITHUB_WORKSPACE%"=="" (
   echo Please define 'GITHUB_WORKSPACE' environment variable.
   exit /B 1
