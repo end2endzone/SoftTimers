@@ -35,9 +35,9 @@ Build:
 
 Statistics:
 
-| AppVeyor                                                                                                                                               | Travic CI                                                                                                                      | GitHub                                                                                                                                               |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![Statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) | [![Statistics](https://buildstats.info/travisci/chart/end2endzone/SoftTimers)](https://travis-ci.org/end2endzone/SoftTimers) | [![Statistics](https://buildstats.info/github/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) |
+| AppVeyor                                                                                                                                             | Travic CI                                                                                                                    | GitHub                                                                                                                          |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| [![Statistics](https://buildstats.info/appveyor/chart/end2endzone/SoftTimers)](https://ci.appveyor.com/project/end2endzone/SoftTimers/branch/master) | [![Statistics](https://buildstats.info/travisci/chart/end2endzone/SoftTimers)](https://travis-ci.org/end2endzone/SoftTimers) | [![Statistics](https://buildstats.info/github/chart/end2endzone/SoftTimers)](https://github.com/end2endzone/SoftTimers/actions) |
 
 
 
