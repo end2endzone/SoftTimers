@@ -97,7 +97,7 @@ namespace arduino { namespace test
     }
 
     //assert elapsed time should be close to 305 usec (255+50)
-    ASSERT_FALSE( t.hasTimedOut() ) << "Unexpected timeout! getElapsedTime() returns " << t.getElapsedTime() << ". micros() returns " << micros();
+    ASSERT_FALSE( t.hasTimedOut() ) << "Unexpected timeout! getElapsedTime()=" << t.getElapsedTime() << ". micros()=" << micros();
     ASSERT_NEAR(t.getElapsedTime(), 305, 20); //allow 20 usec epsilon
     
     //wait for timer to actually time out
@@ -107,7 +107,7 @@ namespace arduino { namespace test
     {
     }
     
-    ASSERT_TRUE( t.hasTimedOut() ) << "Expected a time out! getElapsedTime() returns " << t.getElapsedTime() << ". micros() returns " << micros();
+    ASSERT_TRUE( t.hasTimedOut() ) << "Unexpected timeout! getElapsedTime()=" << t.getElapsedTime() << ". micros()=" << micros();
     ASSERT_GT(t.getElapsedTime(), (unsigned long)500);
   }
   //--------------------------------------------------------------------------------------------------
