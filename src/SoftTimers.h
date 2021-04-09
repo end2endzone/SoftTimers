@@ -110,8 +110,8 @@ public:
 
 protected:
   CounterFunctionPointer mCntFuncPtr;
-  volatile unsigned long mStartTime; 
-  unsigned long mTimeOutTime;
+  volatile uint32_t mStartTime;
+  uint32_t mTimeOutTime;
 };
 
 

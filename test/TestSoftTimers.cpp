@@ -12,7 +12,7 @@ namespace arduino { namespace test
 {
   IncrementalClockStrategy & gClock = IncrementalClockStrategy::getInstance();
 
-  static const unsigned long MAX_TIME_COUNTER_VALUE = (unsigned long)(-1);
+  static const uint32_t MAX_TIME_COUNTER_VALUE = (uint32_t)(-1);
   
   static unsigned long gLocalCounter = 0;
   unsigned long getLocalCounter()
@@ -48,7 +48,7 @@ namespace arduino { namespace test
   {
     SoftTimerMillis t;
     
-    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), 20); //20 ms epsilon since time can actually flows between contructor time and current time
     ASSERT_FALSE( t.hasTimedOut() );
 
     t.setTimeOutTime(300); //0.3 second.
@@ -57,8 +57,8 @@ namespace arduino { namespace test
 
     //wait for the delay to expire
     //which should expires the timer
-    unsigned long now = millis();
-    unsigned long until = now+300;
+    uint32_t now = (uint32_t)millis();
+    uint32_t until = now+300;
     while(millis() < until)
     {
     }
@@ -66,7 +66,7 @@ namespace arduino { namespace test
     ASSERT_TRUE( t.hasTimedOut() );
     t.reset();
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), 20); //20 ms epsilon since time can actually flows between contructor time and current time
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testMicrosOverflow)
@@ -75,24 +75,25 @@ namespace arduino { namespace test
 
     //wait for the micros() function to *almost* wrap around
     gClock.setMicrosecondsCounter(MAX_TIME_COUNTER_VALUE-0x0000FFFF);  // 65536 usec before wrapping around
-    unsigned long until = (MAX_TIME_COUNTER_VALUE-0xFF); //255 usec before wrapping around
+    uint32_t until = (MAX_TIME_COUNTER_VALUE-0xFF); //255 usec before wrapping around
     while(micros() < until)
     {
     }
-    
+
     //start counting time from here
     t.setTimeOutTime(500);
     t.reset(); //expecting start time of ~0xFFFFFF08
 
-    ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), (unsigned long)20); //20 usec epsilon since time can actually flows between contructor time and current time
+    ASSERT_FALSE( t.hasTimedOut() ) << "Unexpected timeout! getElapsedTime()=" << t.getElapsedTime() << ". micros()=" << micros();
+    ASSERT_LT(t.getElapsedTime(), 20); //20 usec epsilon since time can actually flows between contructor time and current time
 
-    //wait the micros() function to actually wrap around
+    //wait ~255 usec for the micros() function to actually wrap around
     //from ~0xFFFFFF08 to 0xFFFFFFFF
     while(micros() > 0xFFFF0000)
     {
-      //until micros() wraps around
     }
+
+    //wait ~50 usec more (this makes the total elaped time to ~305 usec (255+50))
     until = 50; //from ~0x00000000 to more than 50 usec.
     while(micros() < until)
     {
@@ -103,21 +104,21 @@ namespace arduino { namespace test
     ASSERT_NEAR(t.getElapsedTime(), 305, 20); //allow 20 usec epsilon
     
     //wait for timer to actually time out
-    unsigned long now = micros();
+    uint32_t now = (uint32_t)micros();
     until = now+250; // from ~305 usec to ~555 usec
     while(micros() < until)
     {
     }
     
     ASSERT_TRUE( t.hasTimedOut() ) << "Unexpected timeout! getElapsedTime()=" << t.getElapsedTime() << ". micros()=" << micros();
-    ASSERT_GT(t.getElapsedTime(), (unsigned long)500);
+    ASSERT_GT(t.getElapsedTime(), 500);
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testMillisConfiguration)
   {
     SoftTimer t(&millis);
 
-    ASSERT_LT(t.getElapsedTime(), (unsigned long)2); //2 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), 2); //2 ms epsilon since time can actually flows between contructor time and current time
     ASSERT_FALSE( t.hasTimedOut() );
 
     t.setTimeOutTime(300); //300ms second.
@@ -126,8 +127,8 @@ namespace arduino { namespace test
 
     //wait for the delay to expire
     //which should expires the timer
-    unsigned long now = millis();
-    unsigned long until = now+300;
+    uint32_t now = (uint32_t)millis();
+    uint32_t until = now+300;
     while(millis() < until)
     {
     }
@@ -135,7 +136,7 @@ namespace arduino { namespace test
     ASSERT_TRUE( t.hasTimedOut() );
     t.reset();
     ASSERT_FALSE( t.hasTimedOut() );
-    ASSERT_LT(t.getElapsedTime(), (unsigned long)2); //2 ms epsilon since time can actually flows between contructor time and current time
+    ASSERT_LT(t.getElapsedTime(), 2); //2 ms epsilon since time can actually flows between contructor time and current time
   }
   //--------------------------------------------------------------------------------------------------
   TEST_F(TestSoftTimers, testProgress)
