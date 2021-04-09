@@ -6,9 +6,9 @@ if "%APPVEYOR_BUILD_FOLDER%"=="" (
   exit /B 1
 )
 
-set GTEST_ROOT=%APPVEYOR_BUILD_FOLDER%\third_parties\googletest\install
-set rapidassist_DIR=%APPVEYOR_BUILD_FOLDER%\third_parties\RapidAssist\install
-echo rapidassist_DIR=%rapidassist_DIR%
+set CMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\third_parties\RapidAssist\install
+set CMAKE_PREFIX_PATH=
+set CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH%;%APPVEYOR_BUILD_FOLDER%\third_parties\googletest\install
 
 echo ============================================================================
 echo Cloning RapidAssist into %APPVEYOR_BUILD_FOLDER%\third_parties\RapidAssist
@@ -20,23 +20,23 @@ cd RapidAssist
 echo.
 
 echo Checking out version v0.9.1...
-git checkout 0.9.1
+git -c advice.detachedHead=false checkout 0.9.1
 echo.
 
 echo ============================================================================
-echo Compiling...
+echo Compiling RapidAssist...
 echo ============================================================================
 mkdir build >NUL 2>NUL
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=%rapidassist_DIR% ..
+cmake -DCMAKE_GENERATOR_PLATFORM=%Platform% -T %PlatformToolset% -DCMAKE_CXX_FLAGS="/D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING /DWIN32" -DCMAKE_INSTALL_PREFIX=%CMAKE_INSTALL_PREFIX% -DCMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH% ..
 if %errorlevel% neq 0 exit /b %errorlevel%
-cmake --build . --config Release
+cmake --build . --config %Configuration%
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
 
 echo ============================================================================
-echo Installing into %rapidassist_DIR%
+echo Installing RapidAssist into %CMAKE_INSTALL_PREFIX%
 echo ============================================================================
-cmake --build . --config Release --target INSTALL
+cmake --build . --config %Configuration% --target INSTALL
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.

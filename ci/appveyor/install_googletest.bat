@@ -6,6 +6,8 @@ if "%APPVEYOR_BUILD_FOLDER%"=="" (
   exit /B 1
 )
 
+set CMAKE_INSTALL_PREFIX=%APPVEYOR_BUILD_FOLDER%\third_parties\googletest\install
+
 echo ============================================================================
 echo Cloning googletest into %APPVEYOR_BUILD_FOLDER%\third_parties\googletest
 echo ============================================================================
@@ -16,24 +18,23 @@ cd googletest
 echo.
 
 echo Checking out version 1.8.0...
-git checkout release-1.8.0
+git -c advice.detachedHead=false checkout release-1.8.0
 echo.
 
 echo ============================================================================
-echo Compiling...
+echo Compiling googletest...
 echo ============================================================================
 mkdir build >NUL 2>NUL
 cd build
-set GTEST_ROOT=%APPVEYOR_BUILD_FOLDER%\third_parties\googletest\install
-cmake -DCMAKE_INSTALL_PREFIX=%GTEST_ROOT% -Dgtest_force_shared_crt=ON -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
+cmake -DCMAKE_GENERATOR_PLATFORM=%Platform% -T %PlatformToolset% -DCMAKE_CXX_FLAGS=/D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING -DCMAKE_INSTALL_PREFIX=%CMAKE_INSTALL_PREFIX% -Dgtest_force_shared_crt=ON -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
 if %errorlevel% neq 0 exit /b %errorlevel%
-cmake --build . --config Release
+cmake --build . --config %Configuration% -- -maxcpucount /m
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
 
 echo ============================================================================
-echo Installing into %GTEST_ROOT%
+echo Installing googletest into %CMAKE_INSTALL_PREFIX%
 echo ============================================================================
-cmake --build . --config Release --target INSTALL
+cmake --build . --config %Configuration% --target INSTALL
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
