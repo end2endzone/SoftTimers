@@ -12,6 +12,8 @@ namespace arduino { namespace test
 {
   IncrementalClockStrategy & gClock = IncrementalClockStrategy::getInstance();
 
+  static const unsigned long MAX_TIME_COUNTER_VALUE = (unsigned long)(-1);
+  
   static unsigned long gLocalCounter = 0;
   unsigned long getLocalCounter()
   {
@@ -72,8 +74,8 @@ namespace arduino { namespace test
     SoftTimerMicros t;
 
     //wait for the micros() function to *almost* wrap around
-    gClock.setMicrosecondsCounter(0xFFFFF000);
-    unsigned long until = 0xFFFFFF00; //255 usec before wrapping around
+    gClock.setMicrosecondsCounter(MAX_TIME_COUNTER_VALUE-0x0000FFFF);  // 65536 usec before wrapping around
+    unsigned long until = (MAX_TIME_COUNTER_VALUE-0xFF); //255 usec before wrapping around
     while(micros() < until)
     {
     }
