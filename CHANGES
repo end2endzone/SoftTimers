@@ -5,6 +5,7 @@ Changes for 1.4.0:
 * New feature: Using RapidAssist v0.9.1
 * Fixed issue #5: error: invalid conversion from 'long unsigned int (*)()' to 'SoftTimer::CounterFunctionPointer {aka unsigned int (*)()}' [-fpermissive]
 * Fixed issue #6: Build on GitHub Actions
+* Fixed issue #7: Running unit tests on 64 bit Linux
 
 
 Changes for 1.3.0:
