@@ -11,7 +11,6 @@ export CMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/third_parties/win32Arduino/install
 unset CMAKE_PREFIX_PATH
 export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/googletest/install"
 export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/RapidAssist/install"
-export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$GITHUB_WORKSPACE/third_parties/win32Arduino/install"
 
 echo ============================================================================
 echo Cloning win32Arduino into $GITHUB_WORKSPACE/third_parties/win32Arduino
