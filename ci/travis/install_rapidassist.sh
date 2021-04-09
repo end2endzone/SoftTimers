@@ -7,9 +7,9 @@ if [ "$TRAVIS_BUILD_DIR" = "" ]; then
   exit 1;
 fi
 
-export GTEST_ROOT=$TRAVIS_BUILD_DIR/third_parties/googletest/install
-export rapidassist_DIR=$TRAVIS_BUILD_DIR/third_parties/RapidAssist/install
-echo rapidassist_DIR=$rapidassist_DIR
+export CMAKE_INSTALL_PREFIX=$TRAVIS_BUILD_DIR/third_parties/RapidAssist/install
+unset CMAKE_PREFIX_PATH
+export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$TRAVIS_BUILD_DIR/third_parties/googletest/install"
 
 echo ============================================================================
 echo Cloning RapidAssist into $TRAVIS_BUILD_DIR/third_parties/RapidAssist
@@ -21,20 +21,20 @@ cd RapidAssist
 echo
 
 echo Checking out version v0.9.1...
-git checkout 0.9.1
+git -c advice.detachedHead=false checkout 0.9.1
 echo
 
 echo ============================================================================
-echo Compiling...
+echo Compiling RapidAssist...
 echo ============================================================================
 mkdir -p build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=$rapidassist_DIR ..
-cmake --build . -- -j4
+cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH" ..
+cmake --build .
 echo
 
 echo ============================================================================
-echo Installing into $rapidassist_DIR
+echo Installing RapidAssist into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 make install
 echo

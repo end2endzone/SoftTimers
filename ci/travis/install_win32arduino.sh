@@ -11,7 +11,6 @@ export CMAKE_INSTALL_PREFIX=$TRAVIS_BUILD_DIR/third_parties/win32Arduino/install
 unset CMAKE_PREFIX_PATH
 export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$TRAVIS_BUILD_DIR/third_parties/googletest/install"
 export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$TRAVIS_BUILD_DIR/third_parties/RapidAssist/install"
-export CMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH;$TRAVIS_BUILD_DIR/third_parties/win32Arduino/install"
 
 echo ============================================================================
 echo Cloning win32Arduino into $TRAVIS_BUILD_DIR/third_parties/win32Arduino
@@ -34,7 +33,7 @@ cd build
 echo Configure...
 cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_PREFIX_PATH="$CMAKE_PREFIX_PATH" ..
 echo Buliding...
-cmake --build . -- -j4
+cmake --build .
 echo
 
 echo ============================================================================

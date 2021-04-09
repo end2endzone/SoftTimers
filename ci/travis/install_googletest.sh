@@ -7,6 +7,8 @@ if [ "$TRAVIS_BUILD_DIR" = "" ]; then
   exit 1;
 fi
 
+export CMAKE_INSTALL_PREFIX=$TRAVIS_BUILD_DIR/third_parties/googletest/install
+
 echo ============================================================================
 echo Cloning googletest into $TRAVIS_BUILD_DIR/third_parties/googletest
 echo ============================================================================
@@ -17,21 +19,20 @@ cd googletest
 echo
 
 echo Checking out version 1.8.0...
-git checkout release-1.8.0
+git -c advice.detachedHead=false checkout release-1.8.0
 echo
 
 echo ============================================================================
-echo Compiling...
+echo Compiling googletest...
 echo ============================================================================
 mkdir -p build
 cd build
-export GTEST_ROOT=$TRAVIS_BUILD_DIR/third_parties/googletest/install
-cmake -DCMAKE_INSTALL_PREFIX=$GTEST_ROOT -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
+cmake -DCMAKE_INSTALL_PREFIX=$CMAKE_INSTALL_PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DBUILD_GMOCK=OFF -DBUILD_GTEST=ON ..
 cmake --build . -- -j4
 echo
 
 echo ============================================================================
-echo Installing into $GTEST_ROOT
+echo Installing googletest into $CMAKE_INSTALL_PREFIX
 echo ============================================================================
 make install
 echo
