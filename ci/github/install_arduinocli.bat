@@ -9,3 +9,6 @@ if "%GITHUB_WORKSPACE%"=="" (
 :: Call matching script for windows
 call "%GITHUB_WORKSPACE%\ci\windows\%~n0.bat"
 if %errorlevel% neq 0 exit /b %errorlevel%
+
+:: Remember installation directory
+echo ARDUINO_CLI_INSTALL_DIR=%ARDUINO_CLI_INSTALL_DIR%>> %GITHUB_ENV%

@@ -10,3 +10,6 @@ fi
 # Call matching script for linux
 this_filename=`basename "$0"`
 $GITHUB_WORKSPACE/ci/linux/$this_filename
+
+# Remember installation directory
+echo ARDUINO_CLI_INSTALL_DIR=$ARDUINO_CLI_INSTALL_DIR>> $GITHUB_ENV

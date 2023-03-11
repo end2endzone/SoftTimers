@@ -10,8 +10,6 @@ env:
 
   # build Configuration, i.e. Debug, Release, etc.
   Configuration: Release
-
-  ARDUINO_IDE_VERSION: 1.8.13
   
 jobs:
   build:
@@ -59,15 +57,15 @@ jobs:
         gist_file_name: ${{env.GIT_REPOSITORY}}.${{env.GIT_BRANCH}}.${{env.GITHUB_WORKFLOW}}.json
         file_path: ./ci/github/tests_not_available.badge.json
     
-    - name: Install Arduino IDE
+    - name: Install Arduino CLI
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
-      run: call ci\github\arduino_ide_install.bat
+      run: call ci\github\install_arduinocli.bat
 
-    - name: Install SoftTimers arduino library
+    - name: Install this arduino library
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd
-      run: call ci\github\arduino_library_install.bat
+      run: call ci\github\install_this.bat
 
     - name: Install Google Test
       working-directory: ${{env.GITHUB_WORKSPACE}}

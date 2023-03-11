@@ -9,8 +9,6 @@ env:
   # Required for Github Action. Unit test TestProcess.testKillAndTerminate fails to start /bin/nano with the following error: "Error opening terminal: unknown."
   TERM: xterm
 
-  ARDUINO_IDE_VERSION: 1.8.13
-
 jobs:
   build:
     # For a list of available runner types, refer to
@@ -64,10 +62,15 @@ jobs:
         gist_file_name: ${{env.GIT_REPOSITORY}}.${{env.GIT_BRANCH}}.${{env.GITHUB_WORKFLOW}}.json
         file_path: ./ci/github/tests_not_available.badge.json
     
-    - name: Install Arduino IDE
+    - name: Install Arduino CLI
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: bash
-      run: ./ci/github/arduino_ide_install.sh
+      run: ./ci/github/install_arduinocli.sh
+
+    - name: Install this arduino library
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: bash
+      run: ./ci/github/install_this.sh
 
     - name: Install Google Test
       working-directory: ${{env.GITHUB_WORKSPACE}}

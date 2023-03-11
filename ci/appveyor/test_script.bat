@@ -1,13 +1,11 @@
 @echo off
 
-echo =======================================================================
-echo Testing project
-echo =======================================================================
-cd /d %~dp0
-cd ..\..
-cd build\bin\Release
-softtimers_unittest.exe
-echo done
+:: Validate appveyor's environment
+if "%APPVEYOR_BUILD_FOLDER%"=="" (
+  echo Please define 'APPVEYOR_BUILD_FOLDER' environment variable.
+  exit /B 1
+)
 
-::reset_error in case of test case fail
-exit /b 0
+:: Call matching script for windows
+call "%APPVEYOR_BUILD_FOLDER%\ci\windows\%~n0.bat"
+if %errorlevel% neq 0 exit /b %errorlevel%
