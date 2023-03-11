@@ -7,5 +7,5 @@ if "%APPVEYOR_BUILD_FOLDER%"=="" (
 )
 
 :: Call matching script for windows
-call "%APPVEYOR_BUILD_FOLDER%\ci\windows\%~n0.bat"
+call "%APPVEYOR_BUILD_FOLDER%\ci\windows\%~n0.bat" "%~1"
 if %errorlevel% neq 0 exit /b %errorlevel%
