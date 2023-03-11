@@ -16,7 +16,7 @@ echo.
 :: Check Arduino CLI installation
 echo Expecting Arduino CLI installed in directory: %ARDUINO_CLI_INSTALL_DIR%
 echo Searching for arduino cli executable...
-set PATH=%ARDUINO_CLI_INSTALL_DIR%;%PATH%
+set PATH=%PATH%;%ARDUINO_CLI_INSTALL_DIR%
 where arduino-cli.exe
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
