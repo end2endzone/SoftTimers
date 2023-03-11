@@ -25,6 +25,7 @@ arduino-cli version
 echo.
 
 echo Installing arduino:avr core...
-arduino-cli core install arduino:avr
+REM Use `--skip-post-install` on AppVeyor to skip UAC prompt which is blocking the build.
+arduino-cli core install arduino:avr --skip-post-install
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
