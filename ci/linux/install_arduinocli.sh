@@ -17,6 +17,7 @@ echo
 # Installing
 export ARDUINO_CLI_INSTALL_DIR=$HOME/arduino-cli
 echo Installing Arduino CLI to directory: $ARDUINO_CLI_INSTALL_DIR
+mkdir -p $ARDUINO_CLI_INSTALL_DIR
 tar xf $ARDUINO_CLI_FILENAME --directory $ARDUINO_CLI_INSTALL_DIR
 echo
 
