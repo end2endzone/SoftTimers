@@ -4,12 +4,13 @@ on: [push, pull_request]
 
 env:
   # build Configuration, i.e. Debug, Release, etc.
+  PRODUCT_BUILD_TYPE: Release
+
+  # build Configuration, i.e. Debug, Release, etc.
   Configuration: Release
 
   # Required for Github Action. Unit test TestProcess.testKillAndTerminate fails to start /bin/nano with the following error: "Error opening terminal: unknown."
   TERM: xterm
-
-  ARDUINO_IDE_VERSION: 1.8.13
 
 jobs:
   build:
@@ -19,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Configure GIT
       working-directory: ${{env.GITHUB_WORKSPACE}}
@@ -30,7 +31,7 @@ jobs:
         git submodule update --init --recursive
 
     - name: Setup python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
@@ -64,10 +65,15 @@ jobs:
         gist_file_name: ${{env.GIT_REPOSITORY}}.${{env.GIT_BRANCH}}.${{env.GITHUB_WORKFLOW}}.json
         file_path: ./ci/github/tests_not_available.badge.json
     
-    - name: Install Arduino IDE
+    - name: Install Arduino CLI
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: bash
-      run: ./ci/github/arduino_ide_install.sh
+      run: ./ci/github/install_arduinocli.sh
+
+    - name: Install this arduino library
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: bash
+      run: ./ci/github/install_this.sh
 
     - name: Install Google Test
       working-directory: ${{env.GITHUB_WORKSPACE}}
@@ -150,7 +156,7 @@ jobs:
         file_path: ./badge.json
     
     - name: Archive test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: unit-test-results
         path: build/bin/softtimers_unittest*.xml

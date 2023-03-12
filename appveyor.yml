@@ -26,7 +26,7 @@ skip_tags: true
 #---------------------------------#
 
 # Build worker image (VM template)
-image: Visual Studio 2015
+image: Visual Studio 2019
 
 # scripts that are called at very beginning, before repo cloning
 init:
@@ -38,8 +38,8 @@ clone_folder: c:\projects\SoftTimers
 
 # scripts that run after cloning repository
 install:
-- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_ide_install.bat
-- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_library_install.bat
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_arduinocli.bat
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_this.bat
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_googletest.bat
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_rapidassist.bat
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\install_win32arduino.bat
@@ -49,7 +49,7 @@ install:
 #---------------------------------#
 
 environment:
-  PlatformToolset: v140
+  PlatformToolset: v142
   
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: Win32
@@ -63,6 +63,7 @@ configuration: Release
 #  - Release
 
 build_script:
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\build_library.bat
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat Countdown
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat CycleHighPin
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat FadeLed
@@ -70,7 +71,6 @@ build_script:
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat StateMachine
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat ToggleLed
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat ToggleLedAdvanced
-- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\build_library.bat
 
 #---------------------------------#
 #       tests configuration       #
