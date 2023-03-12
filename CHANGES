@@ -1,3 +1,8 @@
+Changes for 2.0.1:
+
+* Fixed issue #9: Refactor build process to use Arduino CLI instead of Arduino IDE.
+
+
 Changes for 2.0.0:
 
 * New feature: Support for ESP8266.
