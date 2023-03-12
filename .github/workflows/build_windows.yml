@@ -148,7 +148,7 @@ jobs:
         file_path: ./badge.json
     
     - name: Archive test results
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: unit-test-results
         path: build\bin\${{env.Configuration}}\softtimers_unittest*.xml
