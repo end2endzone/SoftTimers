@@ -8,8 +8,9 @@ if [ "$GITHUB_WORKSPACE" = "" ]; then
 fi
 
 # Call matching script for linux
+# and execute the script under the current shell instead of loading another one
 this_filename=`basename "$0"`
-$GITHUB_WORKSPACE/ci/linux/$this_filename
+. $GITHUB_WORKSPACE/ci/linux/$this_filename
 
 # Remember installation directory
 echo Remember ARDUINO_CLI_INSTALL_DIR as $ARDUINO_CLI_INSTALL_DIR in $GITHUB_ENV
