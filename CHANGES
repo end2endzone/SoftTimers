@@ -1,4 +1,4 @@
-Changes for 2.1
+Changes for 2.1.0
 
 * New feature: Create class for profiling functions #10.
 * New feature: Add new example: limit the quantity of printed messages #4.
