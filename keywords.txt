@@ -10,3 +10,6 @@ hasTimedOut	KEYWORD2
 getProgress	KEYWORD2
 getLoopProgress	KEYWORD2
 getLoopCount	KEYWORD2
+SoftTimerProfilerMillis	KEYWORD1
+SoftTimerProfilerMicros	KEYWORD1
+SoftTimerProfiler	KEYWORD1

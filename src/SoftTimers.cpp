@@ -103,3 +103,76 @@ double SoftTimer::getLoopProgress()
   uint32_t progress = elapsed % (mTimeOutTime);
   return double(progress)/double(mTimeOutTime);
 }
+
+
+
+
+
+SoftTimerProfiler::SoftTimerProfiler() :
+  timer(&micros)
+{
+  reset();
+}
+
+SoftTimerProfiler::SoftTimerProfiler(SoftTimer::CounterFunctionPointer iCntFuncPtr) :
+  timer(iCntFuncPtr)
+{
+  reset();
+}
+
+SoftTimerProfiler::~SoftTimerProfiler()
+{
+}
+
+void SoftTimerProfiler::reset()
+{
+  memset(&stats, 0, sizeof(stats));
+  stats.min_time = -1;
+}
+
+void SoftTimerProfiler::start()
+{
+  timer.reset();
+}
+
+void SoftTimerProfiler::stop()
+{
+  stats.count++;
+  uint32_t elapsed = timer.getElapsedTime();
+  stats.total += elapsed;
+  if (elapsed > stats.max_time)
+    stats.max_time = elapsed;
+  if (elapsed < stats.min_time)
+    stats.min_time = elapsed;
+}
+
+void SoftTimerProfiler::end()
+{
+  stats.avg_time = float(stats.total) / float(stats.count);
+}
+
+const SoftTimerProfiler::Statistics & SoftTimerProfiler::getStatistics() const
+{
+  return stats;
+}
+
+void SoftTimerProfiler::print() const
+{
+  print("SoftTimerProfiler");
+}
+
+void SoftTimerProfiler::print(const char * name) const
+{
+  if (name) {
+    Serial.print(name);
+    Serial.println(" {");
+  }
+  else
+    Serial.println("{");
+  Serial.println("  count:" + String(stats.count));
+  Serial.println("  total:" + String(stats.total));
+  Serial.println("  avg:  " + String(stats.avg_time));
+  Serial.println("  min:  " + String(stats.min_time));
+  Serial.println("  max:  " + String(stats.max_time));
+  Serial.println("}");
+}
