@@ -169,10 +169,10 @@ void SoftTimerProfiler::print(const char * name) const
   }
   else
     Serial.println("{");
-  Serial.println("  count:" + String(stats.count));
-  Serial.println("  total:" + String(stats.total));
-  Serial.println("  avg:  " + String(stats.avg_time));
-  Serial.println("  min:  " + String(stats.min_time));
-  Serial.println("  max:  " + String(stats.max_time));
+  Serial.print("  count:"); Serial.println(stats.count);
+  Serial.print("  total:"); Serial.println(stats.total);
+  Serial.print("  avg:  "); Serial.println(stats.avg_time);
+  Serial.print("  min:  "); Serial.println(stats.min_time);
+  Serial.print("  max:  "); Serial.println(stats.max_time);
   Serial.println("}");
 }
