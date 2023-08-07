@@ -411,7 +411,7 @@ The following example uses a `SoftTimerProfiler` to compute the average time of 
 
 int loop_count = 0;
 
-static const int unsorted_values[] = {
+static const int unsorted_values[] PROGMEM = {
 179, 211, 219, 307, 495, 462, 485, 396, 286, 189, 361, 122, 312, 398, 218, 487, 287, 452, 86, 297, 147, 196, 298, 158, 265, 136, 229, 301, 412, 160, 300,
 168, 489, 407, 34, 303, 443, 2, 149, 391, 131, 228, 360, 128, 343, 271, 294, 186, 69, 267, 164, 10, 340, 223, 63, 140, 132, 508, 258, 496, 457, 266, 44,
 43, 115, 313, 447, 57, 247, 123, 296, 7, 499, 399, 112, 198, 126, 374, 213, 163, 220, 335, 474, 473, 451, 161, 420, 475, 18, 37, 212, 104, 144, 245, 28,
@@ -453,6 +453,18 @@ void profileAnalogRead() {
   profiler.print("analogRead");
 }
 
+void printArray(int array[], size_t count) {
+  Serial.println("<values>");
+  for(size_t i=0; i<count; i++) {
+    Serial.print(array[i]);
+    bool is_last = !(i+1<count);
+    if (!is_last)
+      Serial.print(", ");
+  }
+  Serial.println();
+  Serial.println("</values>");
+}
+
 // perform the bubble sort
 void bubbleSort(int array[], int size) {
 
@@ -483,7 +495,8 @@ void profileBubbleSort() {
   for(int i=0; i<50; i++) {
     // Copy unsorted values into the array that we will sort.
     // This operation is outside of the scope of the profiler.
-    memcpy(&sorted_values, unsorted_values, sizeof(sorted_values));
+    memcpy_P(&sorted_values, unsorted_values, sizeof(sorted_values));
+    //printArray(sorted_values, sorted_values_count);
 
     profiler.start();
     bubbleSort(sorted_values, sorted_values_count);
