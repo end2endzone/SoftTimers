@@ -102,6 +102,11 @@ jobs:
       shell: cmd
       run: call ci\github\arduino_build_sketch.bat FadeLed
 
+    - name: Build Arduino sketch - LimitPrintedMessages
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: cmd
+      run: call ci\github\arduino_build_sketch.bat LimitPrintedMessages
+
     - name: Build Arduino sketch - ProfileFunctions
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: cmd

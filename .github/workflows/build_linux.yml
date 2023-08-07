@@ -110,6 +110,11 @@ jobs:
       shell: bash
       run: ./ci/github/arduino_build_sketch.sh FadeLed
 
+    - name: Build Arduino sketch - LimitPrintedMessages
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: bash
+      run: ./ci/github/arduino_build_sketch.sh LimitPrintedMessages
+
     - name: Build Arduino sketch - ProfileFunctions
       working-directory: ${{env.GITHUB_WORKSPACE}}
       shell: bash

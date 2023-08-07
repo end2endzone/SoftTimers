@@ -67,6 +67,7 @@ build_script:
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat Countdown
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat CycleHighPin
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat FadeLed
+- cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat LimitPrintedMessages
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat ProfileFunctions
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat ProgressBar
 - cmd: call %APPVEYOR_BUILD_FOLDER%\ci\appveyor\arduino_build_sketch.bat StateMachine

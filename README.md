@@ -549,6 +549,7 @@ More SoftTimer examples are also available:
 * [Countdown](examples/Countdown/Countdown.ino)
 * [CycleHighPin](examples/CycleHighPin/CycleHighPin.ino)
 * [FadeLed](examples/FadeLed/FadeLed.ino)
+* [LimitPrintedMessages](examples/LimitPrintedMessages/LimitPrintedMessages.ino)
 * [ProfileFunctions](examples/ProfileFunctions/ProfileFunctions.ino)
 * [ProgressBar](examples/ProgressBar/ProgressBar.ino)
 * [StateMachine](examples/StateMachine/StateMachine.ino)
